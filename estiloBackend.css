@@ -1,0 +1,186 @@
+body{
+	margin: 0;
+	background-color: #EFEFEF;
+
+	font-family: Lucida Sans Unicode;
+	margin: 0px;
+}
+
+
+#cabeceraPrincipal{
+
+	overflow: hidden;
+	list-style-type: none;
+	margin: 0px; /* si queremos centrarlo */
+	padding: 0px;
+
+	/* la altura y su ancho dependerán de los textos */
+	/*height: 40px; */
+	min-width: 1160px;
+	/* el color de fondo */
+	background: #0071BD;
+}
+
+#menuCont{
+	float: left;
+	margin: 0px;
+	padding: 0px;
+
+}
+
+
+#menu  {
+	list-style-type: none;
+	margin: 0; /* si queremos centrarlo */
+	padding: 0;
+}
+
+/* cada item del menu */
+#menu  li {
+	display: block;
+	float: left; /* la lista se ve horizontal */	
+}
+
+#menu li a {
+	
+	color: #FFF;
+	display: block;
+	font-family: Tahoma;
+	font-size: 13px;
+	font-weight: bold;
+	letter-spacing: .1em;
+	text-transform: uppercase;
+	line-height: 28px;
+	padding: 0 14px;
+
+	text-decoration: none;
+	/* animamos el cambio de color de los textos */
+	-webkit-transition: color .2s ease-in-out;
+	-moz-transition: color .2s ease-in-out;
+	-o-transition: color .2s ease-in-out;
+	-ms-transition: color .2s ease-in-out;
+	transition: color .2s ease-in-out;
+}
+
+/* efecto hover cambia el color */
+.menu li:hover > a { 
+	color: #07357A; 
+}
+
+
+
+#loginUsuario{
+	color: #FFF;
+	display: block;
+	font-family: Tahoma;
+	font-size: 13px;
+	font-weight: bold;
+	letter-spacing: .1em;
+	text-transform: uppercase;
+	float: right;
+	margin: 0;
+	padding: 1px 0;
+
+}
+
+#contenedorPrincipal{
+	margin: 50px auto;
+	width: 70%;
+	border: solid 1px;
+	overflow: hidden;
+}
+
+.camposFormulario{
+	margin:10px;
+	overflow: hidden;
+
+}
+
+#contenedorPrincipal label{
+	padding: .05em;
+	font-size: 1.5em;
+	line-height: 1.2em;
+	width: 17%;
+	float: left;
+	text-align: right;
+	margin-right: 5px;
+	
+}
+
+#contenedorPrincipal input[type="text"], textarea{
+	margin: 0px;
+	
+	line-height: 1.2em;
+	font-size: 1.5em;
+	width: 80%;
+
+}
+
+#botonera{
+	margin: 0 auto;
+	width: 30%;
+	
+	overflow: hidden;
+}
+#contenedorResultado{
+	margin: 1.1em auto;
+	width: 60%;
+	line-height: 1.8em;
+	border: solid 1px;
+	text-align: center;
+}
+
+.boton{
+	float: left;
+	border: none;
+	padding: 7px 15px 8px 15px;
+	cursor:pointer;
+	opacity: 0.9;
+	font-family: "console";
+	margin: 0 auto;
+	vertical-align: ;
+}
+
+.boton:hover{
+	opacity: 1;
+}
+
+#buttonEnviar{
+	height: 4em;
+	width: 10em;
+	float: left;
+}
+
+#buttonReestablecer{
+	margin: 2% auto;
+	float: right;
+}
+
+.botonImagen::-webkit-file-upload-button{
+	visibility: hidden;
+}
+
+.botonImagen::before{
+	content: 'Subir Imagen';
+	
+	display: inline-block;
+	background: #E0E0E0;
+	border-radius: 3px;
+	padding: 5px 8px;
+	outline: none;
+	white-space: nowrap;
+
+	cursor: pointer;
+
+	font-weight: 700;
+	font-size: 10pt;
+}
+
+.botonImagen:hover::before{
+	border-color: black;
+}
+
+.botonImagen:active::before{
+	background: -webkit-linear-gradient(top,#f9f9f9, #e3e3e3);
+}
+
