@@ -10,9 +10,6 @@
 	{
 		$nomTem = $_POST["usuario"];
 		$passTem = $_POST["password"];
-		ChromePhp::log('hello');
-		ChromePhp::log($nomTem);
-		ChromePhp::log($passTem);
 		
 		//Conectamos al SGDB
 		if(!($iden = mysql_connect("localhost","root","root")))

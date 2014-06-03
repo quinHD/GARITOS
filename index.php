@@ -27,7 +27,7 @@
         	<div id="loginUsuario">
 				
 				<?php
-					if($_SESSION['usuario']){
+					if(isset($_SESSION['usuario'])){
 						echo('<form id="formlogout" name="formlogout" method="post" action="logout.php">');
 						echo('<label for="usuario">Usuario: </label>');
 						echo('<span name="usuario" type="text" id="usuariocampo" size="20">'.$_SESSION['usuario'].'</span>');
@@ -110,7 +110,10 @@
 
 				}
 
-				mysqli_free_result($iden);
+				if (isset($iden)) 
+				{
+					mysqli_free_result($iden);
+				}
 
 			
 			?>
