@@ -116,6 +116,23 @@ body{
 
 }
 
+.oculta{
+	border: solid;
+	visibility: hidden;
+	width: 17%;
+
+}
+
+#livesearch{
+	position: relative;
+	background-color: white;
+	margin-left: 18%;
+	margin-right: 12%;
+	width: 80%;
+	
+	/*visibility: hidden;*/
+}
+
 #botonera{
 	margin: 0 auto;
 	width: 30%;

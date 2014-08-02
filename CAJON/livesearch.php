@@ -38,7 +38,7 @@
   // Set output to "no suggestion" if no hint were found
   // or to the correct values
   if ($hint=="") {
-    $response="no suggestion";
+    $response="sin sugerencias";
   } else {
     $response=$hint;
   }

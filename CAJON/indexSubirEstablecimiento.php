@@ -10,8 +10,9 @@
 
 			function addCaract(str)
 			{
-				//alert(str);
-				document.getElementById("caractField").value = str;
+	//				document.getElementById("livesearch").style.left = "300px";
+				document.getElementById("caractField").value += str;
+				document.getElementById("livesearch").innerHTML = "";
 
 				return;
 			}
@@ -133,8 +134,7 @@
 				<div class="camposFormulario"><label class="lblFormulario" for="telefonoField">Teléfono: </label><input name="telefono" type="text" id="telefonoField" size="9" autocomplete="off"/></div>
 				<div class="camposFormulario"><label class="lblFormulario" for="notaField">Nota: </label><input name="nota" type="text" id="notaField" size="5" autocomplete="off" onblur='calculoNota()'/></div>
 				<div class="camposFormulario"><label class="lblFormulario" for="categoriaField">Categoría: </label><input name="categoria" type="text" id="categoriaField" size="50" autocomplete="off" /></div>
-				<div class="camposFormulario"><label class="lblFormulario" for="caractField">Características: </label><input name="caracteristicas" type="text" id="caractField" size="50" autocomplete="off" onkeyup="mostrarResultado(this.value)"/></div>
-				<div id="livesearch"></div>
+				<div class="camposFormulario"><label class="lblFormulario" for="caractField">Características: </label><input name="caracteristicas" type="text" id="caractField" size="50" autocomplete="off" onkeyup="mostrarResultado(this.value)"/><div id="livesearch"></div></div>
 				<div class="camposFormulario"><label class="lblFormulario" for="comentarioField">Comentario: </label><textarea rows="5" cols="60" id ="comentarioField"  name ="comentario" form="formAltaEstablecimiento"></textarea></div>
 				<div class="camposFormulario"><label class="lblFormulario" for="imgField">Imagen: </label><input class="botonImagen" name="imagen" type="file" id="imgField" /></div>
 				<div id="botonera">

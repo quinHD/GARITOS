@@ -1,0 +1,411 @@
+ /*ESTILOS BÁSICOS: Tipo de letra, márgenes, body, ul....*/
+        body{
+            margin-top: 0px;
+            margin-bottom: 0px;
+            background-color: #EFEFEF;
+            /*background-color: #E5BE5F;
+            #E5BE5F*/
+        }
+
+        #contenedor{
+            width: 960px;
+            margin: 0px auto 0 auto;
+            box-shadow: 0px 10px 50px rgba(0,0,0,0.3);
+             font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+            background-color: #FFF;
+
+
+        }
+
+        .clear{
+            clear: both;
+        }
+
+        #bienvenidaContenedor{
+            margin: 30px 10px 10px 10px;
+            padding-top: 10px;
+            padding-bottom: 5px;
+            border-radius: 15px;
+
+            background-color: #D5DEFF;
+            -webkit-box-shadow: 3px 3px 4px #777;
+            -moz-box-shadow: 3px 3px 4px #555;
+           
+        }
+
+        #bienvenidaContenedor #imagenTitulo{
+
+            display: block;
+            margin: 10px auto 5px auto;
+        }
+
+        .barraDivisoria{
+            margin: 15px 10px 5px 10px;
+            border: solid  1px #b9c9fe;
+        }
+
+        #bienvenidaContenedor #textoBienvenida{
+            text-align: justify;
+            background-color: #D5DEFF;
+            padding: 0px 10px ;
+        }
+
+        .ultimo{
+            margin-bottom: 15px;
+        }
+
+        .primero{
+            border-top: 2px solid #d3ddff;
+        }
+
+        #sliderContenedor{
+            padding: 20px;
+            margin: 10px;
+            margin-top: 30px;
+            text-align: center;
+            background-color: #D5DEFF;
+        }
+
+        #sliderContenedor img{
+            border: solid 2px #000;
+            border-radius: 5px;
+        }
+
+        #novedadesTitulo{
+            padding: 5px;
+
+            margin: 30px 780px 5px 10px;
+            text-align: center;
+
+            border-radius: 30px;
+            border: solid 4px #0071BD;
+            color: #FFF;
+            background: #538ED5;
+ 
+        }
+
+        .contenedorColumna{
+            width: 48.2%;
+            border: solid 1px;
+            border-radius: 15px;
+            float:left;
+            margin-left: 10px;
+            background-color: #538ED5;
+            -webkit-box-shadow: 3px 3px 4px #555;
+            -moz-box-shadow: 3px 3px 4px #555;
+            }
+
+        .contenedorColumnaTitulo{
+            color:white;
+            text-align: center;
+            margin: 10px;
+        }
+
+
+
+        .entradaNoticiaTitulo{
+            
+            margin:0;
+            padding:4px;
+            font-size:20px;
+            background-color: #b9c9fe;
+
+
+        }
+
+        .subtituloEntradaNoticia{
+           font-size: 12px;
+            padding: 5px;
+            margin-left: 20px;
+            display: block;
+            background-color: #e8edff;
+            border-bottom: solid 1px #FFF;
+
+        }
+
+        #ultimasNoticiasContenedor a{
+            text-decoration: none;
+        }
+
+        #ultimasNoticiasContenedor img{
+            margin-left: 10px;
+        }
+
+
+
+        #tablaUltimosMensajesForo
+        {
+            font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+            font-size: 12px;
+            width: 100%;
+            text-align: left;
+            border-collapse: collapse;
+            margin-bottom: 15px;
+
+
+        }
+        #tablaUltimosMensajesForo th
+        {
+            font-size: 13px;
+            font-weight: normal;
+            text-align: center;
+            padding: 8px;
+            background: #b9c9fe;
+            border-top: 2px solid #d3ddff;
+            border-bottom: 1px solid #fff;
+            color: #039;
+
+        }
+        #tablaUltimosMensajesForo td
+        {
+            padding: 8px; 
+            border-bottom: 1px solid #fff;
+            color: #669;
+            border-top: 1px solid #fff;
+            background: #e8edff
+
+        }
+        #tablaUltimosMensajesForo tfoot tr td
+        {
+            padding: 5px;
+            background: #e8edff;
+            font-size: 10px;
+            color: #99c;
+            height: 15px;
+        }
+        #tablaUltimosMensajesForo tbody tr:hover td
+        {
+            background: #d0dafd;
+            color: #339;
+        }
+
+        #tablaUltimosMensajesForo a{
+            text-decoration: none;
+        }
+
+        #tablaUltimosMensajesForo .mensaje{
+            width: 70%;
+        }
+
+
+        #tablaUltimosMensajesForo .autor{
+            width: 20%;
+            text-align: center;
+        }
+
+
+        #tablaUltimosMensajesForo .respuestas{
+            width: 10%;
+            text-align: center;
+        }
+
+        #contenidoCentral{
+            margin-top: 20px;
+            float:left;
+
+        }
+
+        #contenidoCentral #tituloContenidoCentral{
+            padding: 5px;
+
+            margin: 15px 780px 0px 10px;
+            text-align: center;
+
+            border-radius: 30px;
+            border: solid 4px #0071BD;
+            color: #FFF;
+            background: #538ED5;
+ 
+
+        }
+
+        #contenidoCentral #textoContenidoCentral{
+            background-color: #D5DEFF;
+            margin: 5px 10px 0px 10px;
+            padding: 10px;
+            text-align: justify;
+            padding-bottom: 5px;
+            border-radius: 15px;
+            -webkit-box-shadow: 3px 3px 4px #777;
+            -moz-box-shadow: 3px 3px 4px #555;
+
+            float:left;
+
+        }
+
+
+        #tituloBanners{
+            padding: 5px;
+
+            margin: 30px 780px 5px 10px;
+            text-align: center;
+
+            border-radius: 30px;
+            border: solid 4px #0071BD;
+            color: #FFF;
+            background: #538ED5;
+            display: block;
+            float: left;
+
+ 
+
+        }
+
+        #imagenesBanners{
+            background: #D5DEFF;
+            width: 940px;
+            margin: 0px 10px 0px 10px;
+            padding: 10px 0px;
+
+            padding-bottom: 5px;
+            border-radius: 15px;
+
+            
+            text-align: center;
+            float: left;
+
+            -webkit-box-shadow: 3px 3px 4px #777;
+            -moz-box-shadow: 3px 3px 4px #555;
+        }
+
+        #imagenesBanners img{
+            margin-left: 20px;
+        }
+
+
+        #pie{
+            
+            float: left;
+            height: 60px;
+            width: 960px;
+            background: #0071BD;
+            margin-top: 30px;
+            background: -webkit-linear-gradient(bottom, #0071BD 30%, white);
+             /* Firefox */
+            background: -moz-linear-gradient(bottom, #0071BD, white);
+            /* IE 10 */
+            background: -ms-linear-gradient(bottom, #0071BD, white);
+            
+        }
+
+        #pie #textoPie{
+            font-size: 12px;
+            margin-left: 10px;
+            margin-top: 15px;
+            width: 900px;
+            float: left;
+            
+        }
+
+
+        #pie #iconocc{
+            margin-top: 10px;
+            float: left;
+        }
+
+
+/*ESTILOS PROPIOS DE LA PÁGINA DE NOTICIAS*/
+        .articulo{
+            margin-top: 40px;
+            margin-bottom: 30px;
+        }
+
+
+        .tituloArticulo{
+            font-size: x-large;
+            margin:0px;
+            height: 75px;
+            font-weight: normal;
+            padding-top: 5px;
+            padding-right: 10px;
+            font-size: 3em;
+            background-color: #b9c9fe;
+
+        }
+
+        .contenidoArticulo{
+            padding: 15px 10px 10px 15px;
+            color: black;
+            font-family: Arial;
+            font-size: .9em;
+            line-height: 1.4em;
+            margin: 0px 10px 10px 87px;
+            background-color: #e8edff;
+            text-align: justify;
+        }
+
+
+        .comentariosArticulo{
+            margin-left: 100px;
+            color: #0071BD;
+        }
+
+        .autorArticulo{
+            margin-left: 100px;
+            color: #0071BD;
+        }
+
+        .fecha{
+            float: left;
+            font-family: Georgia, serif;
+            font-size: small;
+            text-align: center;
+            
+            border-radius: 10px;
+            color: #FFF;
+            background-color: #0071BD;
+            width: 35px;
+            font-weight:normal;
+            padding: 4px 10px;
+            margin: 5px 10px 0px 20px;
+
+
+        }
+
+        .dia{
+            line-height: 1.2em;
+            font-size: x-large;
+        }
+
+/*ESTILOS PROPIOS DE LA PARTE DE COMERCIOS*/
+
+        .tipoComercio{
+
+            background-color: #b9c9fe;
+            text-align: center;
+            padding: 10px 0px;
+        }
+
+        .nombreComercio{
+            padding: 5px;
+
+            margin: 15px 200px 15px 420px;
+            text-align: center;
+
+            border-radius: 30px;
+            border: solid 4px #0071BD;
+            color: #FFF;
+            background: #538ED5;
+            display: block;
+            float: left;
+
+
+        }
+
+        .descripcionComercio{
+            text-align: justify;
+            background-color: #e8edff;
+            margin: 3px 90px 40px 100px;
+            padding: 15px 10px 10px 15px;
+            border: solid 1px #b9c9fe;
+            
+        }
+
+        .imagenComercio{
+            margin-left: 100px;
+
+
+        }
+
+
+       

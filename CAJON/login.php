@@ -3,8 +3,7 @@
 	$nombre = null;
 	$password = null;
 	$resumen = "";
-
-	session_start();
+	
 	if(isset($_POST["usuario"]))
 	{
 		$nomTem = $_POST["usuario"];
@@ -18,17 +17,17 @@
 		if(!mysql_select_db("garitos",$iden))
 			die ("No se ha encontrado la base de datos");
 
-		$sentencia = "SELECT USUARIO, PASSWORD, ID_TIPO_USUARIO FROM t_usuario WHERE USUARIO ='".$nomTem."';";
+		$sentencia = "SELECT * FROM t_usuario WHERE USUARIO ='".$nomTem."';";
 		
 		$resultado = mysql_query($sentencia,$iden);
 
+echo('que pasa pavo');
 		//Si existe el usuario introducido lo cargamos
 		if(mysql_num_rows($resultado)>0)
 		{	
 			while($fila = mysql_fetch_assoc($resultado))
 			{
 				$password = $fila['PASSWORD'];
-				$idTipoUsuario = $fila['ID_TIPO_USUARIO'];
 			}
 
 			if($password == $passTem)
@@ -36,8 +35,9 @@
 				$nombre = $nomTem;
 				$resumen = "Usuario cargado con éxito";
 				$_SESSION["usuario"] = $nombre;
-				$_SESSION["id_tipo_usuario"] = $idTipoUsuario;
-
+				$_SESSION["id_tipo_usuario"] = $fila['ID_TIPO_USUARIO'];
+				ChromePhp::log($_SESSION["usuario"]);
+				ChromePhp::log($_SESSION["id_tipo_usuario"]);
 			}
 			else
 			{
@@ -60,7 +60,5 @@
 			}
 		}
 	}
-	header("Location: index.php");
-
 
 ?>

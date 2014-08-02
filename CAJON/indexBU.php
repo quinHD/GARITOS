@@ -5,21 +5,45 @@
 
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-        <title>Calles de Malasaña</title>
-        <link rel="shortcut icon" href="img/favicon.ico" type="image/vnd.microsoft.icon" />
+        <title>Comerciantes Segovianos Unidos</title>
+         <link rel="shortcut icon" href="img/favicon.ico" type="image/vnd.microsoft.icon" />
+
         
         <link type="text/css" rel="stylesheet" href="css/principal.css"></link>
         <link type="text/css" rel="stylesheet" href="css/menu.css"></link>
-
         <script type="text/javascript" src="javascript/funciones.js"></script>
     </head>
 
-    <body>
+    <body onload=rotacionImagenes('2');>
         <div id="contenedor">
-            
-            <?php
-                require("cabeceraHTML.php");
-            ?>
+            <div id="cabecera">
+                <a name="arriba"><img id="imgCabecera" alt="imagen de cabecera" src="img/cabecera.jpg"/></a>
+            </div> <!--Fin Cabecera -->
+
+            <div id="menuPrincipal" >
+               
+                <ul class="menu">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="noticias.html">Noticias</a></li>
+
+                    <li><a href="establecimientos.html">Establecimientos</a>
+                        <!--
+                        <ul>
+                            <li><a href="comercios.html#tipoA">Tipo A</a></li>
+                            <li><a href="comercios.html#tipoB">Tipo B</a></li>
+                            <li><a href="comercios.html#tipoC">Tipo C</a></li>
+                            <li><a href="comercios.html#tipoD">Tipo D</a></li>    
+                        </ul>                       
+                        -->
+                    </li>
+                    <li><a href="#arriba">Quienes somos</a></li>
+                    <li><a href="#arriba">Quienes somos</a></li>
+                    <li><a href="#arriba">Contacto</a></li>
+                  
+                </ul>
+                <div class="clear"></div> 
+              
+            </div> <!--Fin Menu -->
 
             <div id="contenido">
                 <div id="bienvenidaContenedor">
@@ -199,9 +223,16 @@
                
             </div><!--Fin contenido -->
 
-            <?php
-                require("pieHTML.php");
-            ?>
+            <div id="pie">
+                <p id="textoPie">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin tempus cursus neque a bibendum. Duis dictum, ante non volutpat malesuada, ipsum nisl euismod urna, vel blandit purus lacus et neque. Aliquam tincidunt consectetur nisl, iaculis ultricies lectus lacinia a. Nullam vitae consequat risus. Nullam 
+                </p>
+                <img id="iconocc" src="img/cc_icon.png"/>
+                <div class="clear"></div>
+
+            </div> <!--Fin Pie -->
+
+            <div class="clear"></div> 
         </div><!--Fin Contenedor -->
     </body>
 
