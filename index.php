@@ -43,75 +43,75 @@
                      <h2 id="novedadesTitulo" class="tituloSeccion">Novedades</h2>
                     <div id="ultimasNoticiasContenedor" class="contenedorColumna">
                         <h2 id="ultimasNoticiasTitulo" class="contenedorColumnaTitulo">Últimas Noticias</h2>
-                        <div class="ultimasNoticias, primero">
-                            <h3 class="entradaNoticiaTitulo"><a href="noticias.html#articulo1">Titular de noticia 1</a></h3>
-                            <span class="subtituloEntradaNoticia">
-                                <img alt="icono fecha" src="img/icono_fecha.gif"/ title="Fecha de Publicación"/>
-                                <span>05-May-2013</span>
+                        
 
-                                <img alt="icono autor"src="img/icono_autor.gif"/ title="Autor de la noticia"/>
-                                <span>Usuario A</span>
-                                
-                                <img alt="icono categoría"src="img/icono_categoria.gif"/ title="Categoría"/>
-                                <span>Actualidad</span>
-                            </span>
-                        </div>
+                    <?php
+                        //Conectamos al SGDB
+                        
+                        if(!($iden = mysqli_connect("localhost","root","root", "garitos")))
+                            die ("No se ha podido conectar");
 
-                        <div class="ultimasNoticias">
-                            <h3 class="entradaNoticiaTitulo"><a href="noticias.html#articulo2">Titular de noticia 2</a></h3>
-                            <span class="subtituloEntradaNoticia">
-                                <img alt="icono fecha" src="img/icono_fecha.gif"/ title="Fecha de Publicación"/>
-                                <span>04-Abr-2013</span>
+                        $query = 'SELECT t_noticia.id_noticia, t_noticia.titular_noticia, t_noticia.texto_noticia,t_categoria_noticia.categoria_noticia, t_usuario.usuario, t_noticia.fecha_creacion
+                                  FROM t_noticia 
+                                  INNER JOIN t_categoria_noticia 
+                                    ON t_noticia.id_categoria_noticia=t_categoria_noticia.id_categoria_noticia 
+                                  INNER JOIN t_usuario 
+                                    ON t_noticia.id_usuario = t_usuario.id_usuario 
+                                  ORDER BY t_noticia.fecha_creacion DESC
+                                  LIMIT 5'
+                                ;
 
-                                <img alt="icono autor"src="img/icono_autor.gif"/ title="Autor de la noticia"/>
-                                <span>Usuario B</span>
-                                
-                                <img alt="icono categoría"src="img/icono_categoria.gif"/ title="Categoría"/>
-                                <span>Ofertas</span>
-                            </span>
-                        </div>                        
+                        $select = mysqli_query($iden,$query) or die('Error'.mysql_error());                        
 
-                        <div class="ultimasNoticias">
-                            <h3 class="entradaNoticiaTitulo"><a href="noticias.html#articulo3">Artículo de opinión 1</a></h3>
-                            <span class="subtituloEntradaNoticia">
-                                <img alt="icono fecha" src="img/icono_fecha.gif"/ title="Fecha de Publicación"/>
-                                <span>03-Mar-2013</span>
+                        for ($i = 0; $i < 5; $i++) 
+                        {
+                            $valor=mysqli_fetch_assoc($select);
 
-                                <img alt="icono autor"src="img/icono_autor.gif"/ title="Autor de la noticia"/>
-                                <span>Usuario C</span>
-                                
-                                <img alt="icono categoría"src="img/icono_categoria.gif"/ title="Categoría"/>
-                                <span>Opinión</span>
-                            </span>
-                        </div>  
+                            if($valor != null)
+                            {
+                                $idnoticia = $valor['id_noticia']; 
+                                $titularNoticia = $valor['titular_noticia'];
+                                $textoNoticia = $valor['texto_noticia'];
+                                $idCategoriaNoticia = $valor['categoria_noticia'];
+                                $idUsuario = $valor['usuario'];
+                                $timestamp = $valor['fecha_creacion'];
 
-                        <div class="ultimasNoticias">
-                            <h3 class="entradaNoticiaTitulo"><a href="noticias.html#articulo4">Titular de noticia 3</a></h3>
-                            <span class="subtituloEntradaNoticia">
-                                <img alt="icono fecha" src="img/icono_fecha.gif"/ title="Fecha de Publicación"/>
-                                <span>02-Feb2013</span>
+                                $fechaCreacion = strtotime($timestamp);
+                            }
 
-                                <img alt="icono autor"src="img/icono_autor.gif"/ title="Autor de la noticia"/>
-                                <span>Usuario D</span>
-                                
-                                <img alt="icono categoría"src="img/icono_categoria.gif"/ title="Categoría"/>
-                                <span>Actualidad</span>
-                            </span>
-                        </div>                                                  
+                            if($i==0)
+                                echo('<div class="ultimasNoticias primero">');
+                            else
+                            {
+                                if($i==4)
+                                    echo('<div class="ultimasNoticias ultimo">');
+                                else
+                                    echo('<div class="ultimasNoticias">');
+                            }
 
-                        <div class="ultimasNoticias, ultimo">
-                            <h3 class="entradaNoticiaTitulo"><a href="noticias.html#articulo5">Artículo de opinión 2</a></h3>
-                            <span class="subtituloEntradaNoticia">
-                               <img alt="icono fecha" src="img/icono_fecha.gif"/ title="Fecha de Publicación"/>
-                                <span>01-Ene-2013</span>
-                                
-                                <img alt="icono autor"src="img/icono_autor.gif"/ title="Autor de la noticia"/>
-                                <span>Usuario E</span>
-                                
-                                <img alt="icono categoría"src="img/icono_categoria.gif"/ title="Categoría"/>
-                                <span>Opinión</span>
-                            </span>
-                        </div>
+                                echo('<h3 class="entradaNoticiaTitulo"><a href="noticias.php#noticia'.$idnoticia.'">'.$titularNoticia.'</a></h3>');
+                                echo('<span class="subtituloEntradaNoticia">');
+                                    echo('<img alt="icono fecha" src="img/icono_fecha.gif"/ title="Fecha de Publicación"/>');
+                                    echo('<span>'.date("d", $fechaCreacion).'-'.substr(date("F", $fechaCreacion),0,3).'-'.date("Y", $fechaCreacion).'</span>');
+
+                                    echo('<img alt="icono autor"src="img/icono_autor.gif"/ title="Autor de la noticia"/>');
+                                    echo('<span>'.$idUsuario.'</span>');
+
+                                    echo('<img alt="icono categoría"src="img/icono_categoria.gif"/ title="Categoría"/>');
+                                    echo('<span>'.$idCategoriaNoticia.'</span>');
+                                echo('</span>');
+                            echo('</div>');
+
+                        }
+
+                        if (isset($iden)) 
+                        {
+                            mysqli_free_result($iden);
+                        }
+                    
+                    ?>
+
+
                         
                     </div><!--ultimasNoticiasContenedor-->
 

@@ -37,7 +37,6 @@
             <?php
             	if(($_SESSION["id_tipo_usuario"]>=3)&&(isset($_SESSION["id_tipo_usuario"])))
             	{
-            		echo('<li><a href="nuevoEst.php">Nuevo</a></li>');
             		echo('<li><a href="administracion.php">Administración</a></li>');
             	}
             ?>

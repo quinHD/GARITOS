@@ -18,7 +18,7 @@
 		if(!mysql_select_db("garitos",$iden))
 			die ("No se ha encontrado la base de datos");
 
-		$sentencia = "SELECT USUARIO, PASSWORD, ID_TIPO_USUARIO FROM t_usuario WHERE USUARIO ='".$nomTem."';";
+		$sentencia = "SELECT ID_USUARIO, USUARIO, PASSWORD, ID_TIPO_USUARIO FROM t_usuario WHERE USUARIO ='".$nomTem."';";
 		
 		$resultado = mysql_query($sentencia,$iden);
 
@@ -28,6 +28,7 @@
 			while($fila = mysql_fetch_assoc($resultado))
 			{
 				$password = $fila['PASSWORD'];
+				$idUsuario = $fila['ID_USUARIO'];
 				$idTipoUsuario = $fila['ID_TIPO_USUARIO'];
 			}
 
@@ -36,6 +37,7 @@
 				$nombre = $nomTem;
 				$resumen = "Usuario cargado con éxito";
 				$_SESSION["usuario"] = $nombre;
+				$_SESSION["id_usuario"] = $idUsuario;
 				$_SESSION["id_tipo_usuario"] = $idTipoUsuario;
 
 			}

@@ -7,6 +7,11 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <title>Comerciantes Segovianos Unidos</title>
          <link rel="shortcut icon" href="img/favicon.ico" type="image/vnd.microsoft.icon" />
+           <?php
+                session_start();
+                if(!isset($_SESSION["id_tipo_usuario"] )||$_SESSION["id_tipo_usuario"] <3)
+                    header("location:index.php");
+            ?>
         
         <link type="text/css" rel="stylesheet" href="css/principal.css"></link>
         <link type="text/css" rel="stylesheet" href="css/menu.css"></link>
@@ -19,17 +24,11 @@
            
             <?php
                 require("cabeceraHTML.php");
+                require("apiAdminUsuarios.php");
             ?>
 
-            <div id="contenido">
-                <h2 id="tituloContenedorEstablecimientos" class="tituloSeccion" >Noticias</h2>
-                <?php
-                    if(($_SESSION["id_tipo_usuario"]>=3)&&(isset($_SESSION["id_tipo_usuario"])))
-                    {
-                        echo('<span><a href="nuevaNoticia.php">Añadir noticia</a></span>');
-                    }
-                ?>
-                <div id="noticiasContenedor">
+            <div id="contenido" >
+                <div id="adminNoticiasContenedor" class="tituloSeccion">
                     <?php
                         //Conectamos al SGDB
                         
@@ -42,35 +41,38 @@
                                     ON t_noticia.id_categoria_noticia=t_categoria_noticia.id_categoria_noticia 
                                   INNER JOIN t_usuario 
                                     ON t_noticia.id_usuario = t_usuario.id_usuario 
-                                  ORDER BY t_noticia.fecha_creacion DESC'
+                                  ORDER BY t_noticia.id_noticia'
                                 ;
 
                         $select = mysqli_query($iden,$query) or die('Error'.mysql_error());
+
+                        echo('<table>');
+                        echo('<tr>');
+                            echo('<td>ID</td>');
+                            echo('<td>TITULAR</td>');
+                            echo('<td>CATEGORÍA</td>');
+                            echo('<td>USUARIO</td>');
+                            echo('<td>CREADO</td>');
+                        echo('</tr>');
                         while($valor=mysqli_fetch_assoc($select))
                         {
+
                             $idnoticia = $valor['id_noticia']; 
                             $titularNoticia = $valor['titular_noticia'];
-                            $textoNoticia = $valor['texto_noticia'];
                             $idCategoriaNoticia = $valor['categoria_noticia'];
                             $idUsuario = $valor['usuario'];
-                            $timestamp = $valor['fecha_creacion'];
 
-                            $fechaCreacion = strtotime($timestamp);
+                            echo('<tr>');
+                                echo('<td><span>'.$idnoticia.'</span></td>');
+                                echo('<td><span>'.$titularNoticia.'</span></td>');
+                                echo('<td><span>'.$idCategoriaNoticia.'</span></td>');
+                                echo('<td><span>'.$idUsuario.'</span></td>');
+                                echo('<td><span><input type="checkbox" name="usuarioSeleccionado" value'.$id.'></span></td>');
+                            echo('</tr>');
 
-                            echo('<div class="articulo">');
-                                 echo('<div class="fecha">');
-                                    echo('<div class="mes">'.substr(date("F", $fechaCreacion),0,3).'</div>');
-                                    echo('<div class="dia">'.date("d", $fechaCreacion).'</div>');
-                                    echo('<div class="anio">'.date("Y", $fechaCreacion).'</div>');
-                                echo('</div>');
-                                echo('<a id="noticia'.$idnoticia.'"><h3 class="tituloArticulo" >'.$titularNoticia.'</h3></a>');
-                                echo('<div class="cuerpoArticulo" style = "visibility:visible">');
-                                    echo('<p class="contenidoArticulo">'.$textoNoticia.'</p>');
-                                    echo('<span class="autorArticulo">'.$idUsuario.'</span>');
-                                    echo('<span class="categoriaNoticia">'.$idCategoriaNoticia.'</span>');
-                                echo('</div>');
-                            echo('</div>');
                         }
+                        echo('<br/>');
+                        echo('</table>');
 
                         if (isset($iden)) 
                         {
@@ -78,6 +80,7 @@
                         }
                     
                     ?>
+                    
                 </div>
 
                 <div id="banners" class="tituloSeccion">
