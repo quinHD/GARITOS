@@ -94,7 +94,7 @@
         </script>
     </head>
 
-    <body onload=rotacionImagenes('2');>
+    <body>
         <div id="contenedor">
 
             <?php

@@ -7,6 +7,11 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <title>Comerciantes Segovianos Unidos</title>
          <link rel="shortcut icon" href="img/favicon.ico" type="image/vnd.microsoft.icon" />
+           <?php
+                session_start();
+                if(!isset($_SESSION["id_tipo_usuario"] )||$_SESSION["id_tipo_usuario"] <3)
+                    header("location:index.php");
+            ?>
         
         <link type="text/css" rel="stylesheet" href="css/principal.css"></link>
         <link type="text/css" rel="stylesheet" href="css/menu.css"></link>
@@ -19,17 +24,11 @@
            
             <?php
                 require("cabeceraHTML.php");
+                require("apiAdminUsuarios.php");
             ?>
 
-            <div id="contenido">
-                <h2 id="tituloContenedorEstablecimientos" class="tituloSeccion" >Establecimientos</h2>
-                <?php
-                    if(($_SESSION["id_tipo_usuario"]>=3)&&(isset($_SESSION["id_tipo_usuario"])))
-                    {
-                        echo('<span><a href="nuevoEst.php">Añadir nuevo</a></span>');
-                    }
-                ?>
-                <div id="establecimientosContenedor">
+            <div id="contenido" >
+                <div id="adminUsuarioContenedor" class="tituloSeccion">
                     <?php
                         //Conectamos al SGDB
                         
@@ -39,7 +38,22 @@
                         $query = 'SELECT * FROM t_establecimiento ORDER BY id_establecimiento';
 
                         $select = mysqli_query($iden,$query) or die('Error'.mysql_error());
-                        $raizImagenes = "imgs/";
+
+                        echo('<table style="font-size:10px">');
+                        echo('<tr>');
+                            echo('<td>ID</td>');
+                            echo('<td>NOMBRE</td>');
+                            echo('<td>DIRECCION</td>');
+                            echo('<td>HORARIO</td>');
+                            echo('<td>TELEFONO</td>');
+                            echo('<td>NOTA</td>');
+                            echo('<td>CATEGORIA</td>');
+                            echo('<td>CARACTERÍSTICAS</td>');
+                            echo('<td>IMAGEN</td>');
+                            echo('<td>CREADO</td>');
+                            echo('<td>COMENTARIO</td>');
+                            echo('<td>SEL</td>');
+                        echo('</tr>');
 
                         while($valor=mysqli_fetch_assoc($select))
                         {
@@ -56,32 +70,31 @@
                             $creado = $valor['creado'];
                             $comentario = $valor['comentario'];
 
-                            echo ('<div class="establecimiento">');
-                            echo ('<div class="contApartado" id="aptdoImagen"><img src="'.$imagen.'" class="imagenCabecera"></img></div>');
-                            echo ('<div class="contApartado" id="aptdoNombre"><label class="lblApartado" for="nombre">Nombre: </label><span class="apartado name="nombre">'.$nombre.'</span></div>');
-                            echo ('<div class="contApartado" id="aptdoDireccion"><label class="lblApartado" for="direccion">Dirección: </label><span class="apartado name="direccion">'.$direccion.'</span></div>');
-                            echo ('<div class="contApartado" id="aptdoHorario"><label class="lblApartado" for="horario">Horario: </label><span class="apartado name="horario">'.$horario.'</span></div>');
-                            echo ('<div class="contApartado" id="aptdoTelefono"><label class="lblApartado" for="telefono">Teléfono: </label><span class="apartado name="telefono">'.$telefono.'</span></div>');
-                            echo ('<div class="contApartado" id="aptdoNota"><label class="lblApartado" for="nota">Nota: </label><span class="apartado name="nota">'.$nota.'</span></div>');
-                            echo ('<div class="contHidden" id="contHidden">');
-                                echo ('<div class="contApartado" id="aptdoCategoria"><label class="lblApartado" for="categoria">Categoría: </label>');
-                                $listaCategorias = explode(",",$categoria);
-                                foreach ($listaCategorias as $ctgr) 
-                                {
-                                    echo ('<span class="apartado categoria" name="categoria">'.trim($ctgr).'</span>');  
-                                }
-                                echo('</div>');
-                                echo ('<div class="contApartado" id="aptdoCaracteristicas"><label class="lblApartado" for="caracteristicas">Características: </label>');
-                                $listaCaracteristicas = explode(",",$caracteristicas);
-                                foreach ($listaCaracteristicas as $crtrstc) 
-                                {
-                                    echo ('<span class="apartado caracteristica" name="caracteristicas">'.trim($crtrstc).'</span>');    
-                                }
-                                echo('</div>');
-                                echo ('<div class="contApartado" id="aptdoApartado"><label class="lblApartado" for="comentario"></label><span class="apartado name="comentario">'.$comentario.'</span></div>');
-                                echo ('</div>');
-                            echo ('</div>');
+
+                                echo('<tr>');
+                                echo('<td><span>'.$id.'</span></td>');
+                                echo('<td><span>'.$nombre.'</span></td>');
+                                echo('<td><span>'.$direccion.'</span></td>');
+                                echo('<td><span>'.$horario.'</span></td>');
+                                echo('<td><span>'.$telefono.'</span></td>');
+                                echo('<td><span>'.$nota.'</span></td>');
+                                echo('<td><span>'.$categoria.'</span></td>');
+                                echo('<td><span>'.$caracteristicas.'</span></td>');
+                                if(isset($imagen))
+                                    echo('<td><span>SI</span></td>');
+                                else
+                                    echo('<td><span>NO</span></td>');
+                                echo('<td><span>'.$creado.'</span></td>');
+                                 if(isset($comentario))
+                                    echo('<td><span>SI</span></td>');
+                                else
+                                    echo('<td><span>NO</span></td>');
+                                echo('<td><span><input type="checkbox" name="establecimientoSeleccionado" value'.$id.'></span></td>');
+                            echo('</tr>');
                         }
+
+                         echo('<br/>');
+                        echo('</table>');
 
                         if (isset($iden)) 
                         {
@@ -89,6 +102,7 @@
                         }
                     
                     ?>
+                    
                 </div>
 
                 <div id="banners" class="tituloSeccion">

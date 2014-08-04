@@ -17,11 +17,10 @@
                     echo('<label for="password">Contraseña: </label>');
                     echo('<input name="password" type="password" id="passwordcampo" size="20"/>');
                     echo('<input type="submit" name="botonenviar" id="botonenviar" value="Enviar"/>');
+                    echo('<span><a id="nuevoUsuario" href="nuevoUsuario.php">Registrarse</a></span>');
                     echo('</form>');
                 }
-
             ?>
-        
             <div class="clear"></div> 
         </div>
 
@@ -33,7 +32,7 @@
 
         <ul class="menu">
             <li><a href="index.php">Inicio</a></li>
-            <li><a href="index.php">Noticias</a></li>
+            <li><a href="noticias.php">Noticias</a></li>
             <li><a href="establecimientos.php">Establecimientos</a></li>
             <?php
             	if(($_SESSION["id_tipo_usuario"]>=3)&&(isset($_SESSION["id_tipo_usuario"])))
