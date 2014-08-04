@@ -1,7 +1,22 @@
 ERRORES Y CORRECCIONES
 ======================
 
+URGENTE
+- Restringir la publicación de comentarios a usuarios anónimos
+- Bajas y modificaciones en el panel de administracion
+- Que el admin pueda generar nuevos admin en el panel de administración
+- Que el admin dé y revoque permisos de los usuarios
+- Que se copie un nuevo noticias* cada vez que se da de alta una noticia
+- Nueva sección. Vuestras fotos, fotos de los usuarios en los garitos
+- Añadir noticia automáticamente cuando se cree un garito. Que se notifique solo
+- Añadir administración de categoría de noticias.
+
+NORMAL
 - AÑADIR ESTILO AL PANEL DE LOGIN
 - CAMBIAR LOS TITLE DE TODOS LOS SITIOS
 - QUITAR SERVER_START
 - CAMBIAR EL NOMBRE DE LOS FORMULARIOS
+- SACAR EL DIRECTORIO NEWS DE HREF DE NOTICIAS
+- CAMBIAR LA FUENTE DE LOS TITULARES
+- CENTRALIZAR FUNCIONES AJAX Y CABECERAS
+- SISTEMA DE VALIDACIÓN DE AL PINCHAR SOBRE UNA NOTICIA

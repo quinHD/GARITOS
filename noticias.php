@@ -63,7 +63,7 @@
                                     echo('<div class="dia">'.date("d", $fechaCreacion).'</div>');
                                     echo('<div class="anio">'.date("Y", $fechaCreacion).'</div>');
                                 echo('</div>');
-                                echo('<a id="noticia'.$idnoticia.'"><h3 class="tituloArticulo" >'.$titularNoticia.'</h3></a>');
+                                echo('<a id="noticia'.$idnoticia.'" href="noticia'.$idnoticia.'.php?idnoticia='.$idnoticia.'"><h3 class="tituloArticulo" >'.$titularNoticia.'</h3></a>');
                                 echo('<div class="cuerpoArticulo" style = "visibility:visible">');
                                     echo('<p class="contenidoArticulo">'.$textoNoticia.'</p>');
                                     echo('<span class="autorArticulo">'.$idUsuario.'</span>');
