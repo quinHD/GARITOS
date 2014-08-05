@@ -8,9 +8,14 @@
         <title>Comerciantes Segovianos Unidos</title>
          <link rel="shortcut icon" href="img/favicon.ico" type="image/vnd.microsoft.icon" />
            <?php
+                require("funcionesValidacion.php");
                 session_start();
-                if(!isset($_SESSION["id_tipo_usuario"] )||$_SESSION["id_tipo_usuario"] <3)
+
+                $categoria = 1;
+                $validacion = validarCredencial($_SESSION["id_tipo_usuario"], $categoria);
+                if(!$validacion)
                     header("location:index.php");
+
             ?>
         
         <link type="text/css" rel="stylesheet" href="css/principal.css"></link>
@@ -89,7 +94,7 @@
                                     echo('<td><span>SI</span></td>');
                                 else
                                     echo('<td><span>NO</span></td>');
-                                echo('<td><span><input type="checkbox" name="establecimientoSeleccionado" value'.$id.'></span></td>');
+                                echo('<td><span><input type="checkbox" name="establecimientoSeleccionado" value="'.$id.'"></span></td>');
                             echo('</tr>');
                         }
 

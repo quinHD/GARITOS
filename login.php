@@ -1,5 +1,4 @@
 <?php
-	include 'ChromePhp.php';
 	$nombre = null;
 	$password = null;
 	$resumen = "";
@@ -21,7 +20,6 @@
 		$sentencia = "SELECT ID_USUARIO, USUARIO, PASSWORD, ID_TIPO_USUARIO FROM t_usuario WHERE USUARIO ='".$nomTem."';";
 		
 		$resultado = mysql_query($sentencia,$iden);
-
 		//Si existe el usuario introducido lo cargamos
 		if(mysql_num_rows($resultado)>0)
 		{	
@@ -39,7 +37,6 @@
 				$_SESSION["usuario"] = $nombre;
 				$_SESSION["id_usuario"] = $idUsuario;
 				$_SESSION["id_tipo_usuario"] = $idTipoUsuario;
-
 			}
 			else
 			{

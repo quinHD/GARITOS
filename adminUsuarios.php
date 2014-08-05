@@ -8,9 +8,14 @@
         <title>Comerciantes Segovianos Unidos</title>
          <link rel="shortcut icon" href="img/favicon.ico" type="image/vnd.microsoft.icon" />
            <?php
+                require("funcionesValidacion.php");
                 session_start();
-                if(!isset($_SESSION["id_tipo_usuario"] )||$_SESSION["id_tipo_usuario"] <3)
+
+                $categoria = 1;
+                $validacion = validarCredencial($_SESSION["id_tipo_usuario"], $categoria);
+                if(!$validacion)
                     header("location:index.php");
+
             ?>
         
         <link type="text/css" rel="stylesheet" href="css/principal.css"></link>
@@ -60,12 +65,15 @@
                                 echo('<td><span>'.$id.'</span></td>');
                                 echo('<td><span>'.$usuario.'</span></td>');
                                 echo('<td><span>'.$tipo_usuario.'</span></td>');
-                                echo('<td><span><input type="checkbox" name="usuarioSeleccionado" value'.$id.'></span></td>');
+                                echo('<td><span><input type="checkbox"  form="formBajaUsuario" name="usuarioSeleccionado[]" value="'.$id.'"></span></td>');
                             echo('</tr>');
-
                         }
                         echo('<br/>');
                         echo('</table>');
+
+                        echo('<form id="formBajaUsuario" name="formBajaUsuario" method="post" action="bajaUsuario.php" >');
+                            echo('<div class="botonesFormulario"><input class="boton" type="submit" name="button" id="buttonEnviar" value="Eliminar"/></div>');
+                        echo('</form>');
 
                         if (isset($iden)) 
                         {
@@ -73,6 +81,9 @@
                         }
                     
                     ?>
+
+                    
+
                     
                 </div>
 

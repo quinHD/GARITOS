@@ -6,12 +6,15 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <title>Comerciantes Segovianos Unidos</title>
-         <link rel="shortcut icon" href="img/favicon.ico" type="image/vnd.microsoft.icon" />
-           <?php
-                session_start();
-                if(!isset($_SESSION["id_tipo_usuario"] )||$_SESSION["id_tipo_usuario"] <3)
-                    header("location:index.php");
-            ?>
+        <link rel="shortcut icon" href="img/favicon.ico" type="image/vnd.microsoft.icon" />
+        <?php
+            require("funcionesValidacion.php");
+            session_start();
+            $categoria = 1;
+            $validacion = validarCredencial($_SESSION["id_tipo_usuario"], $categoria);
+            if(!$validacion)
+                header("location:index.php");
+        ?>
         
         <link type="text/css" rel="stylesheet" href="css/principal.css"></link>
         <link type="text/css" rel="stylesheet" href="css/menu.css"></link>
@@ -67,7 +70,7 @@
                                 echo('<td><span>'.$titularNoticia.'</span></td>');
                                 echo('<td><span>'.$idCategoriaNoticia.'</span></td>');
                                 echo('<td><span>'.$idUsuario.'</span></td>');
-                                echo('<td><span><input type="checkbox" name="usuarioSeleccionado" value'.$id.'></span></td>');
+                                echo('<td><span><input type="checkbox" name="usuarioSeleccionado" value="'.$id.'"></span></td>');
                             echo('</tr>');
 
                         }
