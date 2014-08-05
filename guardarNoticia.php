@@ -40,6 +40,20 @@
 
 			echo $mensajeLog;
 
+
+			function addNoticia($_titular, $_categoria, $_noticia, $_usuario)
+			{
+
+				if(!($iden = mysqli_connect("localhost","root","root", "garitos")))
+					die ("No se ha podido conectar");
+
+				$creado = time();
+
+				$sql="INSERT INTO t_noticia (titular_noticia, texto_noticia, id_categoria_noticia, fecha_creacion, id_usuario) VALUES ('$_titular','$_noticia','$_categoria', FROM_UNIXTIME('$creado'),'$_usuario')";
+
+				$insertar = mysqli_query($iden, $sql);
+			}
+
 		?>
 
 	</body>

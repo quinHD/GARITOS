@@ -1,4 +1,5 @@
 <?php
+include("ChromePhp.php");
 	function getRango($id_tipo_usuario)
 	{
 		$rng = 9;

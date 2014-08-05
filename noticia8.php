@@ -30,6 +30,7 @@
                 var formElement = document.getElementById("formAltaComentario");
 
                 resultado = document.getElementById("resultadoCarga");
+
                 ajax = objetoAjax();
                 ajax.open("POST", "guardarComentario.php", true);
                 ajax.onreadystatechange = function()
