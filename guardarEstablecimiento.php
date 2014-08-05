@@ -9,6 +9,7 @@
 
 		<?php
 			include 'ChromePhp.php';
+			include 'guardarNoticia.php';
 
 			//Conectamos al SGDB
 			if(!($iden = mysqli_connect("localhost","root","root", "garitos")))
@@ -116,10 +117,13 @@
 
 			$sql="INSERT INTO t_establecimiento (nombre, direccion, horario, telefono, nota, categoria, caracteristicas, imagen, creado, comentario) VALUES ('$nombre','$direccion','$horario','$telefono','$nota','$categoria','$caracteristicas','$imagen',FROM_UNIXTIME('$creado'),'$comentario' )";
 
+
+
 			$insertar = mysqli_query($iden, $sql);
 
 			if($insertar){
 				$mensajeLog = "Establecimiento añadido con éxito";
+				addNoticia("Nuevo establecimento: ".$nombre,"");
 			}
 			else{
 				$mensajeLog = "Ha habido un fallo con el guardado del establecimiento";

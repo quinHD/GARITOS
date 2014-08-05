@@ -2,7 +2,6 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
-
     <head>
         <?php
             require("headHTML.php");
@@ -35,79 +34,55 @@
                 </div>
                 
                 <div id="novedadesContenedor">
-                     <h2 id="novedadesTitulo" class="tituloSeccion">Novedades</h2>
+                    <h2 id="novedadesTitulo" class="tituloSeccion">Novedades</h2>
                     <div id="ultimasNoticiasContenedor" class="contenedorColumna">
                         <h2 id="ultimasNoticiasTitulo" class="contenedorColumnaTitulo">Últimas Noticias</h2>
-                        
+                            <?php
+                                //Conectamos al SGDB                       
+                                $nDao = new NoticiaDAO();
+                                $arrayNoticias = $nDao->selectNoticias(5);
 
-                    <?php
-                        //Conectamos al SGDB
-                        
-                        if(!($iden = mysqli_connect("localhost","root","root", "garitos")))
-                            die ("No se ha podido conectar");
+                                for ($i = 0; $i < 5; $i++) 
+                                {
+                                    if($arrayNoticias[$i] != null)
+                                    {
+                                       $noticia = $arrayNoticias[$i];
 
-                        $query = 'SELECT t_noticia.id_noticia, t_noticia.titular_noticia, t_noticia.texto_noticia,t_categoria_noticia.categoria_noticia, t_usuario.usuario, t_noticia.fecha_creacion
-                                  FROM t_noticia 
-                                  INNER JOIN t_categoria_noticia 
-                                    ON t_noticia.id_categoria_noticia=t_categoria_noticia.id_categoria_noticia 
-                                  INNER JOIN t_usuario 
-                                    ON t_noticia.id_usuario = t_usuario.id_usuario 
-                                  ORDER BY t_noticia.fecha_creacion DESC
-                                  LIMIT 5'
-                                ;
+                                       $idnoticia = $noticia->id;
+                                       $titularNoticia = $noticia->titular;
+                                       $textoNoticia = $noticia->texto;
+                                       $idCategoriaNoticia = $noticia->idCategoriaNoticia;
+                                       $idUsuario = $noticia->idUsuario;
+                                       $fechaCreacion = $noticia->fechaCreacion;
+                                    }
 
-                        $select = mysqli_query($iden,$query) or die('Error'.mysql_error());                        
+                                    if($i==0)
+                                        echo('<div class="ultimasNoticias primero">');
+                                    else
+                                    {
+                                        if($i==4)
+                                            echo('<div class="ultimasNoticias ultimo">');
+                                        else
+                                            echo('<div class="ultimasNoticias">');
+                                    }
 
-                        for ($i = 0; $i < 5; $i++) 
-                        {
-                            $valor=mysqli_fetch_assoc($select);
+                                        echo('<h3 class="entradaNoticiaTitulo"><a href="noticias.php#noticia'.$idnoticia.'">'.$titularNoticia.'</a></h3>');
+                                        echo('<span class="subtituloEntradaNoticia">');
+                                            echo('<img alt="icono fecha" src="img/icono_fecha.gif"/ title="Fecha de Publicación"/>');
+                                            echo('<span>'.date("d", $fechaCreacion).'-'.substr(date("F", $fechaCreacion),0,3).'-'.date("Y", $fechaCreacion).'</span>');
 
-                            if($valor != null)
-                            {
-                                $idnoticia = $valor['id_noticia']; 
-                                $titularNoticia = $valor['titular_noticia'];
-                                $textoNoticia = $valor['texto_noticia'];
-                                $idCategoriaNoticia = $valor['categoria_noticia'];
-                                $idUsuario = $valor['usuario'];
-                                $timestamp = $valor['fecha_creacion'];
+                                            echo('<img alt="icono autor"src="img/icono_autor.gif"/ title="Autor de la noticia"/>');
+                                            echo('<span>'.$idUsuario.'</span>');
 
-                                $fechaCreacion = strtotime($timestamp);
-                            }
+                                            echo('<img alt="icono categoría"src="img/icono_categoria.gif"/ title="Categoría"/>');
+                                            echo('<span>'.$idCategoriaNoticia.'</span>');
+                                        echo('</span>');
+                                    echo('</div>');
+                                }
 
-                            if($i==0)
-                                echo('<div class="ultimasNoticias primero">');
-                            else
-                            {
-                                if($i==4)
-                                    echo('<div class="ultimasNoticias ultimo">');
-                                else
-                                    echo('<div class="ultimasNoticias">');
-                            }
+                                $nDao->cerrarConexion();
+                            ?>
 
-                                echo('<h3 class="entradaNoticiaTitulo"><a href="noticias.php#noticia'.$idnoticia.'">'.$titularNoticia.'</a></h3>');
-                                echo('<span class="subtituloEntradaNoticia">');
-                                    echo('<img alt="icono fecha" src="img/icono_fecha.gif"/ title="Fecha de Publicación"/>');
-                                    echo('<span>'.date("d", $fechaCreacion).'-'.substr(date("F", $fechaCreacion),0,3).'-'.date("Y", $fechaCreacion).'</span>');
-
-                                    echo('<img alt="icono autor"src="img/icono_autor.gif"/ title="Autor de la noticia"/>');
-                                    echo('<span>'.$idUsuario.'</span>');
-
-                                    echo('<img alt="icono categoría"src="img/icono_categoria.gif"/ title="Categoría"/>');
-                                    echo('<span>'.$idCategoriaNoticia.'</span>');
-                                echo('</span>');
-                            echo('</div>');
-
-                        }
-
-                        if (isset($iden)) 
-                        {
-                            mysqli_free_result($iden);
-                        }
-                    
-                    ?>
-
-
-                        
                     </div><!--ultimasNoticiasContenedor-->
 
                     <div id="ultimosMensajesForoContenedor" class="contenedorColumna">
@@ -179,19 +154,9 @@
                     </p>
                 </div>
 
-                <div id="banners" class="tituloSeccion">
-                    <h2 id="tituloBanners">Anunciantes</h2>
-                    <div id="imagenesBanners">
-                        <a href="http://www.google.es"><img src="img/banner1.jpg" title="banner1"></a>
-                        <a href="http://www.google.es"><img src="img/banner2.jpg" title="banner2"></a>
-                        <a href="http://www.google.es"><img src="img/banner3.jpg" title="banner3"></a>
-                        <a href="http://www.google.es"><img src="img/banner1.jpg" title="banner5"></a>
-                        <a href="http://www.google.es"><img src="img/banner2.jpg" title="banner4"></a>
-                    </div>
-                    
-                </div>
-
-               
+                <?php
+                    require("bannersHTML.php");
+                ?>
             </div><!--Fin contenido -->
 
             <?php
