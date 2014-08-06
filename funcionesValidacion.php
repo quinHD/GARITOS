@@ -1,5 +1,4 @@
 <?php
-include("ChromePhp.php");
 	function getRango($id_tipo_usuario)
 	{
 		$rng = 9;
@@ -12,7 +11,7 @@ include("ChromePhp.php");
 	              WHERE id_tipo_usuario = '".$id_tipo_usuario."';"
 	            ;
 
-	    $select = mysqli_query($iden,$query) or die('Error'.mysql_error());
+	    $select = mysqli_query($iden,$query) or die('Error'.mysqli_error());
 
 	    while($valor=mysqli_fetch_assoc($select))
 	    {
@@ -21,7 +20,7 @@ include("ChromePhp.php");
 
 	    if (isset($iden)) 
 	    {
-	        mysqli_free_result($iden);
+	        mysqli_close($iden);
 	    }
 
 	    return $rng;
@@ -32,14 +31,17 @@ include("ChromePhp.php");
 	function validarCredencial($id_tipo_usuario, $categoria)
 	{
 		$valido = false;
-		$rango = getRango($id_tipo_usuario);
+		
+		if($id_tipo_usuario == null)
+			$rango = 9;
+		else
+			$rango = getRango($id_tipo_usuario);
+
 
 		if($categoria >= $rango)
 			$valido = true;
 
 		return $valido;
 	}
-
-
 
 ?>

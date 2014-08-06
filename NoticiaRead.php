@@ -1,6 +1,6 @@
 <?php
 
-	class CreateNoticiaDAO
+	class NoticiaRead
     {
     	public $iden;
 
@@ -49,7 +49,7 @@
 					$aNoticia['usuario'] = $valor['usuario'];
 
                     $fechaCreacion = strtotime($valor['fecha_creacion']);
-					$aNoticia['fecha_creacion'] = $valor['fecha_creacion'];
+					$aNoticia['fecha_creacion'] = $fechaCreacion;
 
 					array_push($arrayNoticias, $aNoticia);
                 }

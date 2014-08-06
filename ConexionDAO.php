@@ -14,7 +14,7 @@
         {
             if (isset($iden)) 
             {
-                mysqli_free_result($iden);
+                mysqli_close($iden);
             }
         }
     }

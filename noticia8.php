@@ -13,7 +13,6 @@
         <link type="text/css" rel="stylesheet" href="css/establecimientos.css"></link>
         <script type="text/javascript" src="javascript/funciones.js"></script>
         <?php
-            require("funcionesValidacion.php");
             $categoria_crear_comentario = 5;
         ?>
 

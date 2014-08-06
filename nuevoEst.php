@@ -6,12 +6,18 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <title>Comerciantes Segovianos Unidos</title>
-         <link rel="shortcut icon" href="img/favicon.ico" type="image/vnd.microsoft.icon" />
+        <link rel="shortcut icon" href="img/favicon.ico" type="image/vnd.microsoft.icon" />
         <?php
+                include_once("_librerias.php");
+        ?>
+        <?php            
             session_start();
-            if(!isset($_SESSION["id_tipo_usuario"] )||$_SESSION["id_tipo_usuario"] <3)
+            $categoria = 5;
+            $validacion = validarCredencial($_SESSION["id_tipo_usuario"], $categoria);
+            if(!$validacion)
                 header("location:index.php");
         ?>
+
         
         <link type="text/css" rel="stylesheet" href="css/principal.css"></link>
         <link type="text/css" rel="stylesheet" href="css/menu.css"></link>
@@ -21,38 +27,7 @@
 
          <script type="text/javascript">
 
-            function addCaract(str)
-            {
-    //              document.getElementById("livesearch").style.left = "300px";
-                document.getElementById("caractField").value += str;
-                document.getElementById("livesearch").innerHTML = "";
-
-                return;
-            }
-
-            function mostrarResultado(str) {
-              if (str.length==0) { 
-                document.getElementById("livesearch").innerHTML="";
-                document.getElementById("livesearch").style.border="0px";
-                return;
-              }
-              if (window.XMLHttpRequest) {
-                // code for IE7+, Firefox, Chrome, Opera, Safari
-                xmlhttp=new XMLHttpRequest();
-              } else {  // code for IE6, IE5
-                xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-              }
-              xmlhttp.onreadystatechange=function() {
-                if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-
-                  document.getElementById("livesearch").innerHTML=xmlhttp.responseText;
-                  document.getElementById("livesearch").style.border="1px solid #A5ACB2";
-                  //document.getElementById("caractField").innerHTML += xmlhttp.responseText;
-                }
-              }
-              xmlhttp.open("GET","livesearch.php?q="+str,true);
-              xmlhttp.send();
-            }
+            
 
             function calculoNota(){
                 var notaAux;
@@ -76,7 +51,7 @@
 
                 resultado = document.getElementById("resultadoCarga");
                 ajax = objetoAjax();
-                ajax.open("POST", "guardarEstablecimiento.php", true);
+                ajax.open("POST", "EstablecimientoCreate.php", true);
                 ajax.onreadystatechange = function()
                 {
                     if(ajax.readyState == 4)
@@ -111,7 +86,7 @@
                             <div class="camposFormulario"><label class="lblFormulario" for="telefonoField">Teléfono: </label><input name="telefono" type="text" id="telefonoField" size="9" autocomplete="off"/></div>
                             <div class="camposFormulario"><label class="lblFormulario" for="notaField">Nota: </label><input name="nota" type="text" id="notaField" size="5" autocomplete="off" onblur='calculoNota()'/></div>
                             <div class="camposFormulario"><label class="lblFormulario" for="categoriaField">Categoría: </label><input name="categoria" type="text" id="categoriaField" size="50" autocomplete="off" /></div>
-                            <div class="camposFormulario"><label class="lblFormulario" for="caractField">Características: </label><input name="caracteristicas" type="text" id="caractField" size="50" autocomplete="off" onkeyup="mostrarResultado(this.value)"/><div id="livesearch"></div></div>
+                            <div class="camposFormulario"><label class="lblFormulario" for="caractField">Características: </label><input name="caracteristicas" type="text" id="caractField" size="50" autocomplete="off"/></div>
                             <div class="camposFormulario"><label class="lblFormulario" for="comentarioField">Comentario: </label><textarea rows="5" cols="60" id ="comentarioField"  name ="comentario" form="formAltaEstablecimiento"></textarea></div>
                             <div class="camposFormulario"><label class="lblFormulario" for="imgField">Imagen: </label><input class="botonImagen" name="imagen" type="file" id="imgField" /></div>
                             <div id="botonera">
@@ -125,16 +100,9 @@
                     </div>
                 </div>
 
-                <div id="banners" class="tituloSeccion">
-                    <h2 id="tituloBanners">Anunciantes</h2>
-                    <div id="imagenesBanners">
-                        <a href="http://www.google.es"><img src="img/banner1.jpg" title="banner1"></a>
-                        <a href="http://www.google.es"><img src="img/banner2.jpg" title="banner2"></a>
-                        <a href="http://www.google.es"><img src="img/banner3.jpg" title="banner3"></a>
-                        <a href="http://www.google.es"><img src="img/banner1.jpg" title="banner5"></a>
-                        <a href="http://www.google.es"><img src="img/banner2.jpg" title="banner4"></a>
-                    </div>   
-                </div>
+                <?php
+                    require("bannersHTML.php");
+                ?>
              
             </div><!--Fin contenido -->
             <?php

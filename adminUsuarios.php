@@ -8,7 +8,6 @@
         <title>Comerciantes Segovianos Unidos</title>
          <link rel="shortcut icon" href="img/favicon.ico" type="image/vnd.microsoft.icon" />
            <?php
-                require("funcionesValidacion.php");
                 session_start();
 
                 $categoria = 1;

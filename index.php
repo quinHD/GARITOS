@@ -39,8 +39,8 @@
                         <h2 id="ultimasNoticiasTitulo" class="contenedorColumnaTitulo">Últimas Noticias</h2>
                             <?php
                                 //Conectamos al SGDB                       
-                                $nDao = new NoticiaDAO();
-                                $arrayNoticias = $nDao->selectNoticias(5);
+                                $nRead = new NoticiaRead();
+                                $arrayNoticias = $nRead->selectNoticias(5);
 
                                 for ($i = 0; $i < 5; $i++) 
                                 {
@@ -48,12 +48,12 @@
                                     {
                                        $noticia = $arrayNoticias[$i];
 
-                                       $idnoticia = $noticia->id;
-                                       $titularNoticia = $noticia->titular;
-                                       $textoNoticia = $noticia->texto;
-                                       $idCategoriaNoticia = $noticia->idCategoriaNoticia;
-                                       $idUsuario = $noticia->idUsuario;
-                                       $fechaCreacion = $noticia->fechaCreacion;
+                                       $idnoticia = $noticia['id_noticia'];
+                                       $titularNoticia = $noticia['titular_noticia'];
+                                       $textoNoticia = $noticia['texto_noticia'];
+                                       $idCategoriaNoticia = $noticia['categoria_noticia'];
+                                       $idUsuario = $noticia['usuario'];
+                                       $fechaCreacion = $noticia['fecha_creacion'];
                                     }
 
                                     if($i==0)
@@ -80,7 +80,7 @@
                                     echo('</div>');
                                 }
 
-                                $nDao->cerrarConexion();
+                                $nRead->cerrarConexion();
                             ?>
 
                     </div><!--ultimasNoticiasContenedor-->

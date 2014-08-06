@@ -1,5 +1,8 @@
     <div id="cabecera">
         <div id="loginUsuario">
+            <?php
+                include_once("_librerias.php");
+            ?>
         
             <?php
                 session_start();
@@ -35,10 +38,12 @@
             <li><a href="noticias.php">Noticias</a></li>
             <li><a href="establecimientos.php">Establecimientos</a></li>
             <?php
-            	if(($_SESSION["id_tipo_usuario"]>=3)&&(isset($_SESSION["id_tipo_usuario"])))
-            	{
-            		echo('<li><a href="administracion.php">Administración</a></li>');
-            	}
+                session_start();
+                $categoria = 1;
+                $validacion = validarCredencial($_SESSION["id_tipo_usuario"], $categoria);
+                if($validacion)
+                    echo('<li><a href="administracion.php">Administración</a></li>');
+
             ?>
             <li><a href="index.php">Quienes somos</a></li>
             <li><a href="index.php">Contacto</a></li>

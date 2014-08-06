@@ -34,7 +34,7 @@
 
                 resultado = document.getElementById("resultadoCarga");
                 ajax = objetoAjax();
-                ajax.open("POST", "guardarNoticia.php", true);
+                ajax.open("POST", "noticiaCreate.php", true);
                 ajax.onreadystatechange = function()
                 {
                     if(ajax.readyState == 4)
@@ -77,7 +77,7 @@
 
                                         while($valor=mysqli_fetch_assoc($select))
                                         {
-                                            echo('<option value="'.$valor[id_categoria_noticia].'">'.$valor[categoria_noticia].'</option>');
+                                            echo('<option value="'.$valor['id_categoria_noticia'].'">'.$valor['categoria_noticia'].'</option>');
                                         }
                                     ?>
                                 </select>
@@ -97,16 +97,9 @@
                     </div>
                 </div>
 
-                <div id="banners" class="tituloSeccion">
-                    <h2 id="tituloBanners">Anunciantes</h2>
-                    <div id="imagenesBanners">
-                        <a href="http://www.google.es"><img src="img/banner1.jpg" title="banner1"></a>
-                        <a href="http://www.google.es"><img src="img/banner2.jpg" title="banner2"></a>
-                        <a href="http://www.google.es"><img src="img/banner3.jpg" title="banner3"></a>
-                        <a href="http://www.google.es"><img src="img/banner1.jpg" title="banner5"></a>
-                        <a href="http://www.google.es"><img src="img/banner2.jpg" title="banner4"></a>
-                    </div>   
-                </div>
+                <?php
+                    require("bannersHTML.php");
+                ?>
              
             </div><!--Fin contenido -->
             <?php

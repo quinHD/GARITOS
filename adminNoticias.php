@@ -8,7 +8,6 @@
         <title>Comerciantes Segovianos Unidos</title>
         <link rel="shortcut icon" href="img/favicon.ico" type="image/vnd.microsoft.icon" />
         <?php
-            require("funcionesValidacion.php");
             session_start();
             $categoria = 1;
             $validacion = validarCredencial($_SESSION["id_tipo_usuario"], $categoria);
@@ -27,7 +26,6 @@
            
             <?php
                 require("cabeceraHTML.php");
-                require("apiAdminUsuarios.php");
             ?>
 
             <div id="contenido" >
