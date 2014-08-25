@@ -6,6 +6,8 @@
         
             <?php
                 session_start();
+               
+ 
                 if(isset($_SESSION['usuario'])){
                     echo('<form id="formlogout" name="formlogout" method="post" action="logout.php">');
                     echo('<label for="usuario">Usuario: </label>');
@@ -13,8 +15,9 @@
                     echo('<input type="submit" name="botonenviar" id="botonenviar" value="Salir"/>');
                     echo('</form>');
                 }
-                else{
-                    echo('<form id="formlogin" name="formlogin" method="post" action="login.php">');
+                else
+                {
+                    echo('<form id="formlogin" name="formlogin" method="post" action="Login.php">');
                     echo('<label for="usuario">Usuario: </label>');
                     echo('<input name="usuario" type="text" id="usuariocampo" size="20" />');
                     echo('<label for="password">Contraseña: </label>');
@@ -38,7 +41,6 @@
             <li><a href="noticias.php">Noticias</a></li>
             <li><a href="establecimientos.php">Establecimientos</a></li>
             <?php
-                session_start();
                 $categoria = 1;
                 $validacion = validarCredencial($_SESSION["id_tipo_usuario"], $categoria);
                 if($validacion)

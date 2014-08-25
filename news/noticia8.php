@@ -4,15 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-        <title>Comerciantes Segovianos Unidos</title>
-         <link rel="shortcut icon" href="img/favicon.ico" type="image/vnd.microsoft.icon" />
-        
-        <link type="text/css" rel="stylesheet" href="css/principal.css"></link>
-        <link type="text/css" rel="stylesheet" href="css/menu.css"></link>
-        <link type="text/css" rel="stylesheet" href="css/establecimientos.css"></link>
-        <script type="text/javascript" src="javascript/funciones.js"></script>
         <?php
+            require("headHTML.php");
             $categoria_crear_comentario = 5;
         ?>
 
@@ -29,6 +22,7 @@
                 var formElement = document.getElementById("formAltaComentario");
 
                 resultado = document.getElementById("resultadoCarga");
+
                 ajax = objetoAjax();
                 ajax.open("POST", "guardarComentario.php", true);
                 ajax.onreadystatechange = function()
@@ -51,6 +45,7 @@
         <div id="contenedor">
            
             <?php
+
                 require("cabeceraHTML.php");
                 $idNoticiaGet = $_GET["idnoticia"];
                 //Conectamos al SGDB     

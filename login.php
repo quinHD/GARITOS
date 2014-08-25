@@ -1,65 +1,67 @@
 <?php
-	$nombre = null;
-	$password = null;
-	$resumen = "";
+	include_once("_librerias.php");
 
 	session_start();
-	if(isset($_POST["usuario"]))
+
+	if(isset($_POST["usuario"])&&isset($_POST["password"]))
 	{
-		$nomTem = $_POST["usuario"];
-		$passTem = $_POST["password"];
-		
-		//Conectamos al SGDB
-		if(!($iden = mysql_connect("localhost","root","root")))
-			die ("No se ha podido conectar");
 
-		//Conectamos a la base de datos
-		if(!mysql_select_db("garitos",$iden))
-			die ("No se ha encontrado la base de datos");
+		Login::doLogin();
+	}
 
-		$sentencia = "SELECT ID_USUARIO, USUARIO, PASSWORD, ID_TIPO_USUARIO FROM t_usuario WHERE USUARIO ='".$nomTem."';";
-		
-		$resultado = mysql_query($sentencia,$iden);
-		//Si existe el usuario introducido lo cargamos
-		if(mysql_num_rows($resultado)>0)
-		{	
-			while($fila = mysql_fetch_assoc($resultado))
+	
+	class Login
+	{
+		static function doLogin()
+		{
+			$nombre = null;
+			$password = null;
+			$idUsuario = null;
+			$idTipoUsuario = 1;
+			$resumen = "";
+			if(isset($_POST["usuario"])&&isset($_POST["password"]))
 			{
-				$password = $fila['PASSWORD'];
-				$idUsuario = $fila['ID_USUARIO'];
-				$idTipoUsuario = $fila['ID_TIPO_USUARIO'];
-			}
 
-			if($password == $passTem)
-			{
-				$nombre = $nomTem;
-				$resumen = "Usuario cargado con éxito";
-				$_SESSION["usuario"] = $nombre;
-				$_SESSION["id_usuario"] = $idUsuario;
-				$_SESSION["id_tipo_usuario"] = $idTipoUsuario;
+				$iden = ConexionDAO::conectarBD();
+
+				$nombre = $_POST["usuario"];
+				$password = $_POST["password"];
+
+				$sentencia = "SELECT ID_USUARIO, USUARIO, PASSWORD, ID_TIPO_USUARIO FROM t_usuario WHERE USUARIO ='".$nombre."';";
+								
+				$resultado = mysqli_query($iden, $sentencia);
+				//Si existe el usuario introducido lo cargamos
+
+				while($fila = mysqli_fetch_assoc($resultado))
+				{
+					ChromePhp::log($fila);
+					$passwordTemp = $fila['PASSWORD'];
+
+					if($passwordTemp == $password)
+					{
+
+						$_SESSION["usuario"] = $fila['USUARIO'];
+						$_SESSION["id_usuario"] = $fila['ID_USUARIO'];
+						$_SESSION["id_tipo_usuario"] = $fila['ID_TIPO_USUARIO'];
+						ChromePhp::log("A: ".$_SESSION["id_tipo_usuario"] );
+						ChromePhp::log("B: ".$fila['ID_TIPO_USUARIO'] );
+						$resumen = "Usuario cargado con éxito";
+					}
+					else
+					{
+						$resumen = "Contraseña Incorrecta";
+					}
+				}
+
+				ConexionDAO::desconectarBD();
 			}
 			else
 			{
-				$resumen = "Contraseña Incorrecta";
+				$_SESSION["usuario"] = null;
+				$_SESSION["id_usuario"] = null;
+				$_SESSION["id_tipo_usuario"] = 1;
 			}
-		}
-		else
-		{
-			if($nomTem && $passTem)
-			{
-				$sql="INSERT INTO t_usuario (USUARIO, PASSWORD) VALUES ('$nomTem','$passTem')";
-				$insertar = mysql_query($sql,$iden);
-				if($insertar)
-				{
-					$resumen = "Usuario registrado con éxito";
-					$_SESSION["usuario"] = $nomTem;
-				}
-				else
-					$resumen = "No se ha podido registrar el usuario";
-			}
+			header('Location:'.$_SERVER['HTTP_REFERER']);
 		}
 	}
-	header('Location:'.$_SERVER['HTTP_REFERER']);
-
-
 ?>

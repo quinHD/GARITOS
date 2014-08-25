@@ -4,11 +4,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-        <title>Comerciantes Segovianos Unidos</title>
-        <link rel="shortcut icon" href="img/favicon.ico" type="image/vnd.microsoft.icon" />
+       
         <?php
-                include_once("_librerias.php");
+            require("headHTML.php");
         ?>
         <?php            
             session_start();
@@ -18,17 +16,8 @@
                 header("location:index.php");
         ?>
 
-        
-        <link type="text/css" rel="stylesheet" href="css/principal.css"></link>
-        <link type="text/css" rel="stylesheet" href="css/menu.css"></link>
-        <link type="text/css" rel="stylesheet" href="css/subida.css"></link>
 
-        <script type="text/javascript" src="javascript/funciones.js"></script>
-
-         <script type="text/javascript">
-
-            
-
+        <script type="text/javascript">
             function calculoNota(){
                 var notaAux;
                 notaAux = document.getElementById("notaField").value;
