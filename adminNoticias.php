@@ -42,7 +42,6 @@
                         echo('</tr>');
                         foreach ($arrayNoticias as $valor) 
                         {
-
                             $idnoticia = $valor['id_noticia']; 
                             $titularNoticia = $valor['titular_noticia'];
                             $idCategoriaNoticia = $valor['categoria_noticia'];
@@ -55,12 +54,17 @@
                                 echo('<td><span>'.$idCategoriaNoticia.'</span></td>');
                                 echo('<td><span>'.$idUsuario.'</span></td>');
                                 echo('<td><span>'.$fechaCreacion.'</span></td>');
-                                echo('<td><span><input type="checkbox" name="usuarioSeleccionado" value="'.$id.'"></span></td>');
+                                echo('<td><span><a href="editarNoticia.php?t='.$idnoticia.'">Editar</a></span></td>');
+                                echo('<td><span><input type="checkbox"  form="formBajaNoticia" name="noticiaSeleccionada[]" value="'.$idnoticia.'"></span></td>');
                             echo('</tr>');
 
                         }
                         echo('<br/>');
                         echo('</table>');
+
+                        echo('<form id="formBajaNoticia" name="formBajaNoticia" method="post" action="NoticiaDelete.php" >');
+                            echo('<div class="botonesFormulario"><input class="boton" type="submit" name="button" id="buttonEnviar" value="Eliminar"/></div>');
+                        echo('</form>');                        
 
                         $nRead->cerrarConexion();   
                     
@@ -71,7 +75,6 @@
                 <?php
                     require("bannersHTML.php");
                 ?>
-
                
             </div><!--Fin contenido -->
 

@@ -23,7 +23,7 @@
 			$query = 'SELECT * FROM t_establecimiento ORDER BY id_establecimiento';
 
 	        $select = mysqli_query($this->iden,$query) or die('Error'.mysql_error());                        
-                        $raizImagenes = "imgs/";
+            $raizImagenes = "imgs/";
 
             while($valor=mysqli_fetch_assoc($select))
             {

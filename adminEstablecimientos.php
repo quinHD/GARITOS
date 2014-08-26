@@ -36,12 +36,9 @@
                     <?php
                         //Conectamos al SGDB
                         
-                        if(!($iden = mysqli_connect("localhost","root","root", "garitos")))
-                            die ("No se ha podido conectar");
-
-                        $query = 'SELECT * FROM t_establecimiento ORDER BY id_establecimiento';
-
-                        $select = mysqli_query($iden,$query) or die('Error'.mysql_error());
+                        $eRead = new EstablecimientoRead();
+                        //Conectamos al SGDB
+                        $arrayEstablecimientos= $eRead->selectEstablecimientos();
 
                         echo('<table style="font-size:10px">');
                         echo('<tr>');
@@ -58,8 +55,9 @@
                             echo('<td>COMENTARIO</td>');
                             echo('<td>SEL</td>');
                         echo('</tr>');
+                        
 
-                        while($valor=mysqli_fetch_assoc($select))
+                        foreach ($arrayEstablecimientos as $valor) 
                         {
 
                             $id = $valor['id_establecimiento']; 
@@ -70,7 +68,7 @@
                             $nota = $valor['nota'];
                             $categoria = $valor['categoria'];
                             $caracteristicas = $valor['caracteristicas'];
-                            $imagen = $raizImagenes.$valor['imagen'];
+                            $imagen = $valor['imagen'];
                             $creado = $valor['creado'];
                             $comentario = $valor['comentario'];
 
@@ -93,17 +91,18 @@
                                     echo('<td><span>SI</span></td>');
                                 else
                                     echo('<td><span>NO</span></td>');
-                                echo('<td><span><input type="checkbox" name="establecimientoSeleccionado" value="'.$id.'"></span></td>');
+                                echo('<td><span><input type="checkbox"  form="formBajaEstablecimiento" name="establecimientoSeleccionado[]" value="'.$id.'"></span></td>');
                             echo('</tr>');
                         }
 
-                         echo('<br/>');
+                        echo('<br/>');
                         echo('</table>');
 
-                        if (isset($iden)) 
-                        {
-                            mysqli_free_result($iden);
-                        }
+                        echo('<form id="formBajaEstablecimiento" name="formBajaEstablecimiento" method="post" action="EstablecimientoDelete.php" >');
+                            echo('<div class="botonesFormulario"><input class="boton" type="submit" name="button" id="buttonEnviar" value="Eliminar"/></div>');
+                        echo('</form>');
+
+                        $eRead->cerrarConexion();
                     
                     ?>
                     
