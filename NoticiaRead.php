@@ -14,15 +14,18 @@
         	ConexionDAO::desconectarBD();
         }
 
-	    function selectNoticias($lim)
+	    function selectNoticias($lim, $ord)
 	    {
 	    	//Variables
 	    	$arrayNoticias = array();
+	    	$cadLimite = "";
+	    	$cadOrden = "";
 
 	    	if($lim>0)
 	          $cadLimite = "LIMIT ".$lim;
-	      	else
-	      	  $cadLimite = "";
+
+	      	if($ord>0)
+	      		$cadOrden = "ORDER BY t_noticia.fecha_creacion DESC";
 
 	    	//Query
 			$query = 
@@ -31,8 +34,8 @@
 	          INNER JOIN t_categoria_noticia 
 	            ON t_noticia.id_categoria_noticia=t_categoria_noticia.id_categoria_noticia 
 	          INNER JOIN t_usuario 
-	            ON t_noticia.id_usuario = t_usuario.id_usuario 
-	          ORDER BY t_noticia.fecha_creacion DESC '.$cadLimite
+	            ON t_noticia.id_usuario = t_usuario.id_usuario ' 
+	            .$cadOrden." ".$cadLimite
 	        ;
 	        $select = mysqli_query($this->iden,$query) or die('Error'.mysql_error());                        
 

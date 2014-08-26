@@ -29,9 +29,9 @@
                 <div id="establecimientosContenedor">
                     <?php
 
-                        $nDao = new EstablecimientoRead();
+                        $eRead = new EstablecimientoRead();
                         //Conectamos al SGDB
-                        $arrayEstablecimientos= $nDao->selectEstablecimientos();
+                        $arrayEstablecimientos= $eRead->selectEstablecimientos();
 
                         foreach ($arrayEstablecimientos as $establecimiento) 
                         {
@@ -75,7 +75,7 @@
                             echo ('</div>');
                         }
 
-                        $nDao->cerrarConexion();
+                        $eRead->cerrarConexion();
                     
                     ?>
                 </div>

@@ -4,23 +4,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-        <title>Comerciantes Segovianos Unidos</title>
-         <link rel="shortcut icon" href="img/favicon.ico" type="image/vnd.microsoft.icon" />
-           <?php
-                session_start();
+       <?php
+            require("headHTML.php");
+            session_start();
 
-                $categoria = 1;
-                $validacion = validarCredencial($_SESSION["id_tipo_usuario"], $categoria);
-                if(!$validacion)
-                    header("location:index.php");
+            $categoria = 1;
+            $validacion = validarCredencial($_SESSION["id_tipo_usuario"], $categoria);
+            if(!$validacion)
+                header("location:index.php");
 
-            ?>
-        
-        <link type="text/css" rel="stylesheet" href="css/principal.css"></link>
-        <link type="text/css" rel="stylesheet" href="css/menu.css"></link>
-        <link type="text/css" rel="stylesheet" href="css/establecimientos.css"></link>
-        <script type="text/javascript" src="javascript/funciones.js"></script>
+        ?>
+
     </head>
 
     <body>
@@ -28,7 +22,6 @@
            
             <?php
                 require("cabeceraHTML.php");
-                require("apiAdminUsuarios.php");
             ?>
 
             <div id="contenido" >
@@ -36,16 +29,9 @@
                     <?php
                         //Conectamos al SGDB
                         
-                        if(!($iden = mysqli_connect("localhost","root","root", "garitos")))
-                            die ("No se ha podido conectar");
-
-                        $query = 'SELECT t_usuario.id_usuario, t_usuario.usuario, t_tipo_usuario.tipo_usuario
-                                  FROM t_usuario 
-                                  INNER JOIN t_tipo_usuario
-                                    ON t_usuario.id_tipo_usuario = t_tipo_usuario.id_tipo_usuario
-                                  ORDER BY id_usuario;';
-
-                        $select = mysqli_query($iden,$query) or die('Error'.mysql_error());
+                        //Conectamos al SGDB
+                        $uRead = new UsuarioRead();
+                        $arrayUsuarios = $uRead->selectUsuarios();
 
                         echo('<table>');
                         echo('<tr>');
@@ -54,7 +40,7 @@
                             echo('<td>TIPO_USUARIO</td>');
                             echo('<td>SEL</td>');
                         echo('</tr>');
-                        while($valor=mysqli_fetch_assoc($select))
+                        foreach ($arrayUsuarios as $valor) 
                         {
                             $id = $valor['id_usuario']; 
                             $usuario = $valor['usuario'];
@@ -70,33 +56,17 @@
                         echo('<br/>');
                         echo('</table>');
 
-                        echo('<form id="formBajaUsuario" name="formBajaUsuario" method="post" action="bajaUsuario.php" >');
+                        echo('<form id="formBajaUsuario" name="formBajaUsuario" method="post" action="UsuarioDelete.php" >');
                             echo('<div class="botonesFormulario"><input class="boton" type="submit" name="button" id="buttonEnviar" value="Eliminar"/></div>');
                         echo('</form>');
 
-                        if (isset($iden)) 
-                        {
-                            mysqli_free_result($iden);
-                        }
+                        $uRead->cerrarConexion();  
                     
                     ?>
-
-                    
-
-                    
                 </div>
-
-                <div id="banners" class="tituloSeccion">
-                    <h2 id="tituloBanners">Anunciantes</h2>
-                    <div id="imagenesBanners">
-                        <a href="http://www.google.es"><img src="img/banner1.jpg" title="banner1"></a>
-                        <a href="http://www.google.es"><img src="img/banner2.jpg" title="banner2"></a>
-                        <a href="http://www.google.es"><img src="img/banner3.jpg" title="banner3"></a>
-                        <a href="http://www.google.es"><img src="img/banner1.jpg" title="banner5"></a>
-                        <a href="http://www.google.es"><img src="img/banner2.jpg" title="banner4"></a>
-                    </div>    
-                </div>
-
+                <?php
+                    require("bannersHTML.php");
+                ?>
                
             </div><!--Fin contenido -->
 

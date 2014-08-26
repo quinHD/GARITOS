@@ -41,7 +41,7 @@
                             <?php
                                 //Conectamos al SGDB                       
                                 $nRead = new NoticiaRead();
-                                $arrayNoticias = $nRead->selectNoticias(5);
+                                $arrayNoticias = $nRead->selectNoticias(5,1);
 
                                 for ($i = 0; $i < 5; $i++) 
                                 {

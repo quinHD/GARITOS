@@ -31,7 +31,7 @@
                     <?php
                         //Conectamos al SGDB
                         $nRead = new NoticiaRead();
-                        $arrayNoticias = $nRead->selectNoticias(0);
+                        $arrayNoticias = $nRead->selectNoticias(0,1);
 
                         //while($noticia=mysqli_fetch_assoc($arrayNoticias))
                         foreach ($arrayNoticias as $noticia) 
