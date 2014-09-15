@@ -14,6 +14,64 @@
         	ConexionDAO::desconectarBD();
         }
 
+        function selectNoticiaUpdate($idNoticia)
+        {
+			$query = 'SELECT t_noticia.id_noticia, t_noticia.titular_noticia,t_noticia.id_categoria_noticia, t_noticia.texto_noticia,t_noticia.id_categoria_noticia, t_usuario.usuario, t_noticia.fecha_creacion
+			FROM t_noticia  
+			INNER JOIN t_usuario 
+			ON t_noticia.id_usuario = t_usuario.id_usuario 
+			WHERE t_noticia.id_noticia='."$idNoticia".';';
+			
+	        $select = mysqli_query($this->iden,$query) or die('Error'.mysql_error());                        
+
+            while($valor=mysqli_fetch_assoc($select))
+            {
+				$aNoticia = array();
+                if($valor != null)
+                {
+					$aNoticia['titular_noticia'] = $valor['titular_noticia'];
+					$aNoticia['texto_noticia'] = $valor['texto_noticia'];
+					$aNoticia['id_categoria_noticia'] = $valor['id_categoria_noticia'];
+					$aNoticia['usuario'] = $valor['usuario'];
+                    $fechaCreacion = strtotime($valor['fecha_creacion']);
+					$aNoticia['fecha_creacion'] = $fechaCreacion;
+                }
+            } 
+
+            return $aNoticia;
+
+        }
+
+        function selectNoticia($idNoticia)
+        {
+			$query = 'SELECT t_noticia.id_noticia, t_noticia.titular_noticia, t_noticia.texto_noticia,t_categoria_noticia.categoria_noticia, t_usuario.usuario, t_noticia.fecha_creacion
+			FROM t_noticia 
+			INNER JOIN t_categoria_noticia 
+			ON t_noticia.id_categoria_noticia=t_categoria_noticia.id_categoria_noticia 
+			INNER JOIN t_usuario 
+			ON t_noticia.id_usuario = t_usuario.id_usuario 
+			WHERE t_noticia.id_noticia='."$idNoticia".';';
+			
+	        $select = mysqli_query($this->iden,$query) or die('Error'.mysql_error());                        
+
+            while($valor=mysqli_fetch_assoc($select))
+            {
+				$aNoticia = array();
+                if($valor != null)
+                {
+					$aNoticia['titular_noticia'] = $valor['titular_noticia'];
+					$aNoticia['texto_noticia'] = $valor['texto_noticia'];
+					$aNoticia['categoria_noticia'] = $valor['categoria_noticia'];
+					$aNoticia['usuario'] = $valor['usuario'];
+                    $fechaCreacion = strtotime($valor['fecha_creacion']);
+					$aNoticia['fecha_creacion'] = $fechaCreacion;
+                }
+            } 
+
+            return $aNoticia;
+
+        }
+
 	    function selectNoticias($lim, $ord)
 	    {
 	    	//Variables

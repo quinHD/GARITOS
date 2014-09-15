@@ -1,12 +1,18 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 
     <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <title>Comerciantes Segovianos Unidos</title>
+         <link rel="shortcut icon" href="img/favicon.ico" type="image/vnd.microsoft.icon" />
+        
+        <link type="text/css" rel="stylesheet" href="css/principal.css"></link>
+        <link type="text/css" rel="stylesheet" href="css/menu.css"></link>
+        <link type="text/css" rel="stylesheet" href="css/establecimientos.css"></link>
+        <script type="text/javascript" src="javascript/funciones.js"></script>
         <?php
-            require("headHTML.php");
             $categoria_crear_comentario = 5;
         ?>
 
@@ -23,7 +29,6 @@
                 var formElement = document.getElementById("formAltaComentario");
 
                 resultado = document.getElementById("resultadoCarga");
-
                 ajax = objetoAjax();
                 ajax.open("POST", "guardarComentario.php", true);
                 ajax.onreadystatechange = function()
@@ -47,26 +52,44 @@
            
             <?php
                 require("cabeceraHTML.php");
+                $idNoticiaGet = $_GET["idnoticia"];
+                //Conectamos al SGDB     
+                if(!($iden = mysqli_connect("localhost","root","root", "garitos")))
+                    die ("No se ha podido conectar");
 
-				$idNoticia = $_GET['t'];
 
-				if($idNoticia>0)
-				{
-                    //Conectamos al SGDB
-                    $nRead = new NoticiaRead();
-                    $arrayNoticias = $nRead->selectNoticia($idNoticia);
+                 $query = 'SELECT t_noticia.id_noticia, t_noticia.titular_noticia, t_noticia.texto_noticia,t_categoria_noticia.categoria_noticia, t_usuario.usuario, t_noticia.fecha_creacion
+                          FROM t_noticia 
+                          INNER JOIN t_categoria_noticia 
+                            ON t_noticia.id_categoria_noticia=t_categoria_noticia.id_categoria_noticia 
+                          INNER JOIN t_usuario 
+                            ON t_noticia.id_usuario = t_usuario.id_usuario 
+                          WHERE t_noticia.id_noticia='."$idNoticiaGet".'
+                          ORDER BY t_noticia.fecha_creacion DESC;';
+                   
 
-                    //$idNoticia
-                    $titularNoticia = $arrayNoticias['titular_noticia'];
-                    $textoNoticia = $arrayNoticias['texto_noticia'];
-                    $idCategoriaNoticia = $arrayNoticias['categoria_noticia'];
-                    $idUsuario = $arrayNoticias['usuario'];
-                    $timestamp = $arrayNoticias['fecha_creacion'];
+                $select = mysqli_query($iden,$query) or die('Error'.mysql_error());
+
+
+                while($valor=mysqli_fetch_assoc($select))
+                {
+                    $idNoticia = $idNoticiaGet;
+                    $titularNoticia = $valor['titular_noticia'];
+                    $textoNoticia = $valor['texto_noticia'];
+                    $idCategoriaNoticia = $valor['categoria_noticia'];
+                    $idUsuario = $valor['usuario'];
+                    $timestamp = $valor['fecha_creacion'];
 
                     $fechaCreacion = strtotime($timestamp);
-	                  
-                    $nRead->cerrarConexion();  
-            	}
+
+
+                }   
+                if (isset($iden)) 
+                {
+                    mysqli_free_result($iden);
+                }
+            
+        
             ?>
 
             <div id="contenido">
@@ -100,7 +123,7 @@
                                   FROM t_comentario 
                                   INNER JOIN t_usuario 
                                     ON t_comentario.id_usuario=t_usuario.id_usuario
-                                  WHERE t_comentario.id_noticia='."$idNoticia".'
+                                  WHERE t_comentario.id_noticia='."$idNoticiaGet".'
                                   ORDER BY t_comentario.fecha_creacion DESC;';
                            
 

@@ -2,18 +2,17 @@ ERRORES Y CORRECCIONES
 ======================
 
 URGENTE
------------------ Restringir la publicación de comentarios a usuarios anónimos
-- Bajas y modificaciones en el panel de administracion
+
 - Que el admin pueda generar nuevos admin en el panel de administración
 - Que el admin dé y revoque permisos de los usuarios
------------------- Que se copie un nuevo noticias* cada vez que se da de alta una noticia
 - Nueva sección. Vuestras fotos, fotos de los usuarios en los garitos
 - Añadir noticia automáticamente cuando se cree un garito. Que se notifique solo
 - Añadir administración de "categoría de noticias".
 - Gestionar correctamente los session_start()
-
-NORMAL
+- Posibilidad de eliminar noticias por el admin y por el usuario que la ha creado
 - AÑADIR ESTILO AL PANEL DE LOGIN
+- corregir el mensaje al añadir una noticia, pone jejeje y no vale.
+- corregir la fecha mostrada en creado en la administración
 - CAMBIAR LOS TITLE DE TODOS LOS SITIOS
 - QUITAR SERVER_START
 - CAMBIAR EL NOMBRE DE LOS FORMULARIOS
@@ -25,4 +24,11 @@ NORMAL
 - CAMBIAR LAS CATEGORIAS DE LAS PÁGINAS, NO PUEDEN ESTAR GRABADAS A FUEGO
 - AÑADIR VENTANAS MODALES EN EL BORRADO DE USUARIOS Y COSAS
 - SACAR $raizImagenes = "imgs/"; EN ESTABLECIMIENTODAO
- - AL AÑADIR LA NOTICIA QUE SE PUEDA AÑADIR IMAGEN, Y ENTONCES SALDRÁ UNA MINIATURA EN LA PAGINA NOTICIAS Y A TAMAÑO NARTURAL EN LA PÁGINA DE LA NOTICIA
+- AL AÑADIR LA NOTICIA QUE SE PUEDA AÑADIR IMAGEN, Y ENTONCES SALDRÁ UNA MINIATURA EN LA PAGINA NOTICIAS Y A TAMAÑO NARTURAL EN LA PÁGINA DE LA NOTICIA
+
+
+ HECHO!!!!
+ =========
+- Restringir la publicación de comentarios a usuarios anónimos
+- Bajas y modificaciones en el panel de administracion
+- Que se copie un nuevo noticias* cada vez que se da de alta una noticia

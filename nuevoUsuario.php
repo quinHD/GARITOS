@@ -29,7 +29,7 @@
 
                 resultado = document.getElementById("resultadoCarga");
                 ajax = objetoAjax();
-                ajax.open("POST", "guardarUsuario.php", true);
+                ajax.open("POST", "UsuarioCreate.php", true);
                 ajax.onreadystatechange = function()
                 {
                     if(ajax.readyState == 4)
@@ -64,7 +64,6 @@
                             <div class="botonesFormulario"><input class="boton" type="submit" name="button" id="buttonEnviar" value="Enviar"/></div>
                             <div class="botonesFormulario"><input class="boton" type="reset" name="reestablecer" id="buttonReestablecer" value="Reset"/></div>
                             </div>
-                            
                         </form>
 
                         <div id="contenedorResultado"><span id="resultadoCarga">Jejeje</span></div>

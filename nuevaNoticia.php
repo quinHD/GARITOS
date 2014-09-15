@@ -4,20 +4,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-        <title>Comerciantes Segovianos Unidos</title>
-         <link rel="shortcut icon" href="img/favicon.ico" type="image/vnd.microsoft.icon" />
         <?php
+            require("headHTML.php");
+
             session_start();
             if($_SESSION["id_tipo_usuario"] <2)
                 header("location:index.php");
         ?>
-        
-        <link type="text/css" rel="stylesheet" href="css/principal.css"></link>
-        <link type="text/css" rel="stylesheet" href="css/menu.css"></link>
-        <link type="text/css" rel="stylesheet" href="css/subida.css"></link>
 
-        <script type="text/javascript" src="javascript/funciones.js"></script>
 
          <script type="text/javascript">
 
@@ -34,7 +28,7 @@
 
                 resultado = document.getElementById("resultadoCarga");
                 ajax = objetoAjax();
-                ajax.open("POST", "noticiaCreate.php", true);
+                ajax.open("POST", "NoticiaCreate.php", true);
                 ajax.onreadystatechange = function()
                 {
                     if(ajax.readyState == 4)
@@ -68,8 +62,7 @@
                                 <select name="categoria" id="categoriaField" form="formAltaNoticia">
                                     <?php
                                         //Conectamos al SGDB
-                                        if(!($iden = mysqli_connect("localhost","root","root", "garitos")))
-                                            die ("No se ha podido conectar");
+                                        $iden = ConexionDAO::conectarBD();
 
                                         $query = 'SELECT id_categoria_noticia, categoria_noticia FROM t_categoria_noticia ORDER BY id_categoria_noticia';
 

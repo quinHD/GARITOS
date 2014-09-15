@@ -100,11 +100,6 @@
 								imagecopyresampled($imagenCopia, $recursoFuente, $cordX, $cordY, 0, 0, $nuevoAncho, $nuevoAlto, $infoFuente[0], $infoFuente[1]);
 							}
 
-
-
-							
-
-							
 							imagejpeg($imagenCopia,$rutaImagen);
 
 							$mensajeLog = 'Guardado copón ya';

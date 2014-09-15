@@ -53,6 +53,7 @@
                             echo('<td>IMAGEN</td>');
                             echo('<td>CREADO</td>');
                             echo('<td>COMENTARIO</td>');
+                            echo('<td>EDICIÓN</td>');
                             echo('<td>SEL</td>');
                         echo('</tr>');
                         
@@ -82,15 +83,16 @@
                                 echo('<td><span>'.$nota.'</span></td>');
                                 echo('<td><span>'.$categoria.'</span></td>');
                                 echo('<td><span>'.$caracteristicas.'</span></td>');
-                                if(isset($imagen))
+                                if(strlen($comentario)>0)
                                     echo('<td><span>SI</span></td>');
                                 else
                                     echo('<td><span>NO</span></td>');
                                 echo('<td><span>'.$creado.'</span></td>');
-                                 if(isset($comentario))
+                                if(strlen($comentario)>0)
                                     echo('<td><span>SI</span></td>');
                                 else
                                     echo('<td><span>NO</span></td>');
+                                echo('<td><span><a href="editarEstablecimiento.php?t='.$id.'">Editar</a></span></td>');
                                 echo('<td><span><input type="checkbox"  form="formBajaEstablecimiento" name="establecimientoSeleccionado[]" value="'.$id.'"></span></td>');
                             echo('</tr>');
                         }

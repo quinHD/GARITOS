@@ -38,6 +38,7 @@
                             echo('<td>ID</td>');
                             echo('<td>USUARIO</td>');
                             echo('<td>TIPO_USUARIO</td>');
+                            echo('<td>EDICIÓN</td>');
                             echo('<td>SEL</td>');
                         echo('</tr>');
                         foreach ($arrayUsuarios as $valor) 
@@ -50,6 +51,7 @@
                                 echo('<td><span>'.$id.'</span></td>');
                                 echo('<td><span>'.$usuario.'</span></td>');
                                 echo('<td><span>'.$tipo_usuario.'</span></td>');
+                                echo('<td><span><a href="editarUsuario.php?t='.$id.'">Editar</a></span></td>');
                                 echo('<td><span><input type="checkbox"  form="formBajaUsuario" name="usuarioSeleccionado[]" value="'.$id.'"></span></td>');
                             echo('</tr>');
                         }
