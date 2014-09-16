@@ -35,7 +35,7 @@
 
                         foreach ($arrayEstablecimientos as $establecimiento) 
                         {
-                            $id = $establecimiento['id']; 
+                            $id = $establecimiento['id_establecimiento']; 
                             $nombre = $establecimiento['nombre']; 
                             $direccion = $establecimiento['direccion']; 
                             $horario = $establecimiento['horario']; 
@@ -49,7 +49,11 @@
               
 
                             echo ('<div class="establecimiento">');
-                            echo ('<div class="contApartado" id="aptdoImagen"><img src="'.$imagen.'" class="imagenCabecera"></img></div>');
+
+                            if(@getimagesize($imagen))//Hay imagen: La mostramos
+                                echo ('<div class="contApartado" id="aptdoImagen"><a href="verEstablecimiento.php?id='.$id.'"><img src="'.$imagen.'" class="imagenCabecera"></img></a></div>');
+                            else
+                                echo ('<div class="contApartado" id="aptdoImagen"><a href="verEstablecimiento.php?id='.$id.'"><img src="imgs/_NO_DISPONIBLE.jpg" class="imagenCabecera"></img></a></div>');
                             echo ('<div class="contApartado" id="aptdoNombre"><label class="lblApartado" for="nombre">Nombre: </label><span class="apartado name="nombre">'.$nombre.'</span></div>');
                             echo ('<div class="contApartado" id="aptdoDireccion"><label class="lblApartado" for="direccion">Dirección: </label><span class="apartado name="direccion">'.$direccion.'</span></div>');
                             echo ('<div class="contApartado" id="aptdoHorario"><label class="lblApartado" for="horario">Horario: </label><span class="apartado name="horario">'.$horario.'</span></div>');

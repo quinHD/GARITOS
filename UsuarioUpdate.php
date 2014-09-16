@@ -15,10 +15,9 @@
 
         $iden = ConexionDAO::conectarBD();
         $query = 'UPDATE t_usuario
-                  SET usuario="'.$usuario.'", password="'.$password.'", id_tipo_usuario="'.$tipoUsuarioCombo.'"
+                  SET usuario="'.$usuario.'", password="'.$password.'", id_tipo_usuario="'.$id_tipo_usuario.'"
                   WHERE id_usuario="'.$idUsuario.'";'
                   ;
-        ChromePhp::log($query);
         $select = mysqli_query($iden,$query) or die('Error'.mysql_error());                        
         ConexionDAO::desconectarBD();
 

@@ -27,13 +27,21 @@
                 var formElement = document.getElementById("formAltaNoticia");
 
                 resultado = document.getElementById("resultadoCarga");
+
                 ajax = objetoAjax();
                 ajax.open("POST", "NoticiaCreate.php", true);
                 ajax.onreadystatechange = function()
                 {
                     if(ajax.readyState == 4)
                     {
-                        resultado.innerHTML = (ajax.responseText);
+                        var tokens = (ajax.responseText).split("#");
+                        /*
+                            tokens[0]: Valor de control -> 0=Ha habido un fallo, 1=Inserción correcta
+                            tokens[1]: Texto que acompaña al valor de control y que se va a mostrar
+                        */
+                        resultado.innerHTML= tokens[1];
+
+                    
                         formElement.reset();
                         document.getElementById("titularField").focus();
                     }

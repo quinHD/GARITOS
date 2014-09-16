@@ -54,40 +54,16 @@
                 require("cabeceraHTML.php");
                 $idNoticiaGet = $_GET["idnoticia"];
                 //Conectamos al SGDB     
-                if(!($iden = mysqli_connect("localhost","root","root", "garitos")))
-                    die ("No se ha podido conectar");
+                    $nRead = new NoticiaRead();
+                    $arrayNoticias = $nRead->selectNoticiaUpdate($idNoticiaGet);
 
-
-                 $query = 'SELECT t_noticia.id_noticia, t_noticia.titular_noticia, t_noticia.texto_noticia,t_categoria_noticia.categoria_noticia, t_usuario.usuario, t_noticia.fecha_creacion
-                          FROM t_noticia 
-                          INNER JOIN t_categoria_noticia 
-                            ON t_noticia.id_categoria_noticia=t_categoria_noticia.id_categoria_noticia 
-                          INNER JOIN t_usuario 
-                            ON t_noticia.id_usuario = t_usuario.id_usuario 
-                          WHERE t_noticia.id_noticia='."$idNoticiaGet".'
-                          ORDER BY t_noticia.fecha_creacion DESC;';
-                   
-
-                $select = mysqli_query($iden,$query) or die('Error'.mysql_error());
-
-
-                while($valor=mysqli_fetch_assoc($select))
-                {
-                    $idNoticia = $idNoticiaGet;
-                    $titularNoticia = $valor['titular_noticia'];
-                    $textoNoticia = $valor['texto_noticia'];
-                    $idCategoriaNoticia = $valor['categoria_noticia'];
-                    $idUsuario = $valor['usuario'];
+                    //$idNoticia
+                    $titularNoticia = $arrayNoticias['titular_noticia'];
+                    $textoNoticia = $arrayNoticias['texto_noticia'];
+                    $idCategoriaNoticia = $arrayNoticias['id_categoria_noticia'];
+                    $idUsuario = $arrayNoticias['usuario'];
                     $fechaCreacion = $valor['fecha_creacion'];
-
-                    $fechaCreacion = strtotime($timestamp);
-
-
-                }   
-                if (isset($iden)) 
-                {
-                    mysqli_free_result($iden);
-                }
+                    $nRead->cerrarConexion();  
             
         
             ?>

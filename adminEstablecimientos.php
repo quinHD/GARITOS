@@ -83,13 +83,13 @@
                                 echo('<td><span>'.$nota.'</span></td>');
                                 echo('<td><span>'.$categoria.'</span></td>');
                                 echo('<td><span>'.$caracteristicas.'</span></td>');
-                                if(strlen($comentario)>0)
+                                if(@getimagesize($imagen))
                                     echo('<td><span>SI</span></td>');
                                 else
                                     echo('<td><span>NO</span></td>');
                                 echo('<td><span>'.$creado.'</span></td>');
                                 if(strlen($comentario)>0)
-                                    echo('<td><span>SI</span></td>');
+                                    echo('<td title="'.$comentario.'"><span>SI</span></td>');
                                 else
                                     echo('<td><span>NO</span></td>');
                                 echo('<td><span><a href="editarEstablecimiento.php?t='.$id.'">Editar</a></span></td>');

@@ -1,9 +1,9 @@
 <?php
-
+	
 
 	if(isset($_POST['nombre']))
 	{
-		include("ConexionDAO.php");	
+		include_once("_librerias.php");
 	   	$eCreate = new EstablecimientoCreate();
 	   	$eCreate->insertEstablecimiento();
 	   	$eCreate->cerrarConexion();
@@ -44,7 +44,7 @@
 			}
 			else
 			{
-				$anchoEstandar = 320;
+				$anchoEstandar = 420;
 				$altoEstandar = 180;
 				$cordX = 0;
 				$cordY = 0;
@@ -123,8 +123,22 @@
 
 			$insertar = mysqli_query($this->iden, $sql);
 
+
 			if($insertar)
 			{
+				$idTemp = mysqli_insert_id($this->iden);
+                $titular = "Nuevo Establecimiento: ".$nombre;
+                $catNoticia = "1";
+
+                $noticia = 'Un nuevo local añadido a nuestra base de datos! <br/> Se llama <a href="verEstablecimiento.php?id='.$idTemp.'">'.$nombre.'</a>.';
+                if(strlen($direccion)>0)
+                    $noticia = $noticia." Anímate a visitarlo en: ".$direccion;
+
+                
+                $nCreate = new NoticiaCreate();
+                $nCreate->insertAutomaticoNoticia($titular, $catNoticia, $noticia);
+                $nCreate->cerrarConexion(); 
+                
 				$mensajeLog = "Establecimiento añadido con éxito";
 			}
 			else

@@ -6,12 +6,16 @@
     <head>
         <?php
             require("headHTML.php");
-        ?>
+            include_once("ChromePhp.php");
 
-        <?php
-            session_start();
-            $categoria = 9;
+
+                session_start();
+
+
+            $categoria = 0;
             $validacion = validarCredencial($_SESSION["id_tipo_usuario"], $categoria);
+
+            ChromePhp::log($_SESSION);
             if($validacion)
                 header("location:index.php");
         ?>

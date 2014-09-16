@@ -34,7 +34,6 @@
 
 				while($fila = mysqli_fetch_assoc($resultado))
 				{
-					ChromePhp::log($fila);
 					$passwordTemp = $fila['PASSWORD'];
 
 					if($passwordTemp == $password)

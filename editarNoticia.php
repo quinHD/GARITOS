@@ -62,7 +62,9 @@
                             echo('</select>');
 
                             echo('</div>'); //Cerramos el div abierto en TipoUsuario, unas lineas más arriba
-                            echo('<div class="camposFormulario"><label class="lblFormulario" for="textoNoticia">Texto: </label><input name="textoNoticia" type="text" id="textoNoticia" size="50" autocomplete="off" value="'.$textoNoticia.'"/></div>');
+                            ?>
+                            <div class="camposFormulario"><label class="lblFormulario" for="textoNoticia">Texto: </label><input name="textoNoticia" type="text" id="textoNoticia" size="50" autocomplete="off" value='<?php echo($textoNoticia)?>'/></div>
+                            <?php
                             echo('<div id="botonera">');
                             echo('<div class="botonesFormulario"><input class="boton" type="submit" name="button" id="buttonEnviar" value="Enviar"/></div>');
                             echo('<div class="botonesFormulario"><input class="boton" type="reset" name="reestablecer" id="buttonReestablecer" value="Reset"/></div>');

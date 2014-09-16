@@ -9,6 +9,8 @@
     include_once("EstablecimientoRead.php");
     include_once("EstablecimientoCreate.php");
 
+    include_once("ComentarioDelete.php");
+
     include_once("UsuarioRead.php");
 
     include_once("Login.php");

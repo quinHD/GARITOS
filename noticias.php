@@ -42,6 +42,7 @@
                            $idCategoriaNoticia = $noticia['categoria_noticia'];
                            $idUsuario = $noticia['usuario'];
                            $fechaCreacion = $noticia['fecha_creacion'];
+                           $numComentarios = $noticia['num_comentarios'];
                             
 
                             echo('<div class="articulo">');
@@ -55,6 +56,7 @@
                                     echo('<p class="contenidoArticulo">'.$textoNoticia.'</p>');
                                     echo('<span class="autorArticulo">'.$idUsuario.'</span>');
                                     echo('<span class="categoriaNoticia">'.$idCategoriaNoticia.'</span>');
+                                    echo('<span class="numComentarios">'.$numComentarios.'</span>');
                                 echo('</div>');
                             echo('</div>');
                         }

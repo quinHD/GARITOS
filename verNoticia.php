@@ -63,7 +63,7 @@
                     $idUsuario = $arrayNoticias['usuario'];
                     $timestamp = $arrayNoticias['fecha_creacion'];
 
-                    $fechaCreacion = strtotime($timestamp);
+                    $fechaCreacion = $timestamp;
 	                  
                     $nRead->cerrarConexion();  
             	}
@@ -110,15 +110,22 @@
                         {
                             $idComentario = $valor['id_comentario'];
                             $comentario = $valor['comentario'];
-                            $idUsuario = $valor['usuario'];
+                            $usuario = $valor['usuario'];
                             $timestamp = $valor['fecha_creacion'];
 
                             $fechaCreacion = strtotime($timestamp);
 
                             echo('<div class="comentario">');
-                                echo('<span class="autorComentario">Escrito por:'.$idUsuario.'</span>');
-                                echo('<span class="autorComentario">Hora:'.$timestamp.'</span>');
+                                echo('<span class="autorComentario">Escrito por:'.$usuario.'</span>');
+                                echo('<span class="horaComentario">Hora:'.$timestamp.'</span>');
                                 echo('<p class="textoComentario">'.$comentario.'</p>');
+
+                                //Validamos credencial para ver si se trata de admin o si es el autor del comentario, ya que el mensaje solo se podrá borrar si es uno de ellos
+                                $cat = 1;
+                                if(($usuario == $_SESSION["usuario"])||validarCredencial($_SESSION["id_tipo_usuario"], $cat))
+                                    echo('<span id="eliminarComentario"><a href="borrarComentario.php?id='.$idComentario.'">Eliminar</a></span>');
+                                
+
                             echo('</div>');
                         }   
                         if (isset($iden)) 

@@ -23,6 +23,15 @@
         	ConexionDAO::desconectarBD();
         }
 
+        function insertAutomaticoNoticia($titular, $categoria, $noticia)
+        {
+
+        	$usuario = $_SESSION['id_usuario'];
+			$creado = time();
+        	$sql="INSERT INTO t_noticia (titular_noticia, texto_noticia, id_categoria_noticia, fecha_creacion, id_usuario) VALUES ('$titular','$noticia','$categoria', FROM_UNIXTIME('$creado'),'$usuario')";
+        	$insertar = mysqli_query($this->iden, $sql);
+        }
+
         function insertNoticia()
 	    {
 			//Variables de apoyo
@@ -35,12 +44,14 @@
 			$usuario = $_POST['usuario'];
 			$creado = time();
 
+
+
 			$sql="INSERT INTO t_noticia (titular_noticia, texto_noticia, id_categoria_noticia, fecha_creacion, id_usuario) VALUES ('$titular','$noticia','$categoria', FROM_UNIXTIME('$creado'),'$usuario')";
 
 			$insertar = mysqli_query($this->iden, $sql);
 
 			if($insertar){
-				$mensajeLog = "Noticia creada con éxito";
+				$mensajeLog = "1#Noticia creada con éxito";
 
 				//Una vez insertada la noticia creamos un fichero noticia que sigue el patrón de noticiaX donde se mostrará
 
@@ -48,7 +59,7 @@
 				copy("_noticiaX.php", "noticia".$noticiaInsertada.".php");
 			}
 			else{
-				$mensajeLog = "Ha habido un fallo en la creación de la noticia";
+				$mensajeLog = "0#Ha habido un fallo en la creación de la noticia";
 			}
 
 			echo $mensajeLog;
