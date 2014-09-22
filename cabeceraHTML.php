@@ -2,6 +2,7 @@
         <div id="loginUsuario">
             <?php
                 include_once("_librerias.php");
+                
             ?>
         
             <?php
@@ -48,7 +49,7 @@
 
             ?>
             <li><a href="index.php">Quienes somos</a></li>
-            <li><a href="index.php">Contacto</a></li>
+            <li><a href="contacto.php">Contacto</a></li>
           
         </ul>
        

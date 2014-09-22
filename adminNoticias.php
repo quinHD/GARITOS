@@ -29,7 +29,7 @@
                     <?php
                         //Conectamos al SGDB
                         $nRead = new NoticiaRead();
-                        $arrayNoticias = $nRead->selectNoticias(0,0);
+                        $arrayNoticias = $nRead->selectNoticias(0,0,0); //0-> Límite, 0->Sin orden, orden por ID, 0->si filtro
                        
                         echo('<table>');
                         echo('<tr>');

@@ -1,0 +1,83 @@
+#tituloContenedorAdministracion
+{
+	font-size: 40px;
+	border-radius: 30px;
+	border: solid 4px #0071BD;
+	color: #FFF;
+	background: #538ED5;
+
+	padding: 5px 15px;
+
+	margin: 50px 30% 60px 30%;
+	text-align: center;
+}
+
+#adminContenedorImg{
+	height: 178px;
+	background-color: #b9c9fe;
+	padding: 3%;
+	padding-top: 25px;
+	padding-bottom: 0;
+
+	box-shadow: 0px 2px 2px #bbb;
+	margin: 0 10%;
+}
+
+.seccionesAdminImg img{
+	height: 128pt;
+	width: 128pt;
+	margin-left: 40px;
+}
+
+
+#adminContenedor{
+
+	height: 50px;
+	background-color: #b9c9fe;
+	padding: 3%;
+	padding-top: 25px;
+	padding-bottom: 0;
+
+	box-shadow: 0px 2px 2px #bbb;
+	margin: 0 10%;
+	margin-bottom: 30px;
+}
+
+#descripcionAdministracion{
+	margin: 0 10% 20px 10%;
+	text-indent: 20px;
+	text-align: justify;
+
+}
+
+
+
+.seccionesAdmin{
+	display: inline-block;
+	width: auto;
+}
+
+
+.seccionesAdmin a:link{
+	
+	margin-left: 10px;
+	text-decoration: none;
+	padding: 10px 20px;
+	background: #0071BD;
+	box-shadow: 2px -2px #D4DFFA;
+	color:#ddd;
+}
+.seccionesAdmin a:visited{
+	color:#ddd;
+
+}
+
+.seccionesAdmin a:hover{
+	position: relative;
+	text-decoration: none;
+	box-shadow: 0px 0px #000;
+	background: #005187;
+	top: -2px;
+	left: 2px;
+	color:#fff;
+}

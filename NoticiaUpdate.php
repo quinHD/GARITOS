@@ -24,10 +24,10 @@
                   ;
 
         ChromePhp::log($query);
-        //$select = mysqli_query($iden,$query) or die('Error'.mysql_error());                        
+        $select = mysqli_query($iden,$query) or die('Error'.mysql_error());                        
         ConexionDAO::desconectarBD();
 
-        //header('Location:'.$_SERVER['HTTP_REFERER']);
+        header('Location:'.$_SERVER['HTTP_REFERER']);
     }
     
 ?>

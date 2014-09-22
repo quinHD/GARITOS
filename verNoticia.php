@@ -7,8 +7,9 @@
     <head>
         <?php
             require("headHTML.php");
-            $categoria_crear_comentario = 5;
+            $categoria_crear_comentario = 7;
         ?>
+        <link type="text/css" rel="stylesheet" href="css/verNoticias.css"></link>
 
         <script type="text/javascript">
 
@@ -22,16 +23,15 @@
             {
                 var formElement = document.getElementById("formAltaComentario");
 
-                resultado = document.getElementById("resultadoCarga");
-
                 ajax = objetoAjax();
                 ajax.open("POST", "guardarComentario.php", true);
                 ajax.onreadystatechange = function()
                 {
                     if(ajax.readyState == 4)
                     {
-                        resultado.innerHTML = (ajax.responseText);
-                        formElement.reset();
+                        //resultado.innerHTML = (ajax.responseText);
+                        location.reload();
+                        //formElement.reset();
                     }
                 }
 
@@ -56,10 +56,11 @@
                     $nRead = new NoticiaRead();
                     $arrayNoticias = $nRead->selectNoticia($idNoticia);
 
-                    //$idNoticia
+                    //$idNoticia echo('<span><a href="noticias.php?categoria='.$idCategoriaNoticia.'">'.$categoriaNoticia.'</a></span>');
                     $titularNoticia = $arrayNoticias['titular_noticia'];
                     $textoNoticia = $arrayNoticias['texto_noticia'];
-                    $idCategoriaNoticia = $arrayNoticias['categoria_noticia'];
+                    $idCategoriaNoticia = $arrayNoticias['id_categoria_noticia'];
+                    $categoriaNoticia = $arrayNoticias['categoria_noticia'];
                     $idUsuario = $arrayNoticias['usuario'];
                     $timestamp = $arrayNoticias['fecha_creacion'];
 
@@ -80,9 +81,14 @@
                             echo('</div>');
                             echo('<h3 class="tituloArticulo" >'.$titularNoticia.'</h3>');
                             echo('<div class="cuerpoArticulo" style = "visibility:visible">');
+                                echo('<div class="pintarBordesSup"></div>');
                                 echo('<p class="contenidoArticulo">'.$textoNoticia.'</p>');
-                                echo('<span class="autorArticulo">'.$idUsuario.'</span>');
-                                echo('<span class="categoriaNoticia">'.$idCategoriaNoticia.'</span>');
+                                echo('<div class="pintarBordesInf"></div>');
+                                echo('<div class="contInfoArticulo"');
+                                        echo('<span class="autorArticulo">Creado por: '.$idUsuario.'</span>');
+                                        echo('<span class="separador">|</span>');
+                                        echo('<span class="categoriaNoticia">Categoria: <a href="noticias.php?categoria='.$idCategoriaNoticia.'">'.$categoriaNoticia.'</a></span>');
+                                echo('</div>');
                             echo('</div>');
                         echo('</div>');
                     ?>
@@ -115,16 +121,17 @@
 
                             $fechaCreacion = strtotime($timestamp);
 
-                            echo('<div class="comentario">');
-                                echo('<span class="autorComentario">Escrito por:'.$usuario.'</span>');
-                                echo('<span class="horaComentario">Hora:'.$timestamp.'</span>');
-                                echo('<p class="textoComentario">'.$comentario.'</p>');
+                            echo('<div id="comments" name="comments" class="comentario">');
+                                echo('<span class="autorComentario">'.$usuario.' dice:</span>');
+                                echo('<div class="contComentario"> ');
+                                    echo('<p class="textoComentario">'.$comentario.'</p>');
+                                    echo('<span class="horaComentario">'.$timestamp.'</span>');                                
+                                    //Validamos credencial para ver si se trata de admin o si es el autor del comentario, ya que el mensaje solo se podrá borrar si es uno de ellos
+                                    $cat = 1;
+                                    if(($usuario == $_SESSION["usuario"])||validarCredencial($_SESSION["id_tipo_usuario"], $cat))
+                                        echo('<span class="eliminarComentario"><a href="borrarComentario.php?id='.$idComentario.'">Eliminar</a></span>');
 
-                                //Validamos credencial para ver si se trata de admin o si es el autor del comentario, ya que el mensaje solo se podrá borrar si es uno de ellos
-                                $cat = 1;
-                                if(($usuario == $_SESSION["usuario"])||validarCredencial($_SESSION["id_tipo_usuario"], $cat))
-                                    echo('<span id="eliminarComentario"><a href="borrarComentario.php?id='.$idComentario.'">Eliminar</a></span>');
-                                
+                                echo('</div>');
 
                             echo('</div>');
                         }   
@@ -147,14 +154,15 @@
                             echo('<input name="noticia" type="hidden" id="noticiaField" size="50" value="'.$idNoticia.'" autocomplete="off"/>');
                             echo('<input name="usuario" type="hidden" id="usuarioField" size="50" value="'.$_SESSION['id_usuario'].'" autocomplete="off"/>');
                          
-                            echo('<div class="camposFormulario"><label class="lblFormulario" for="comentarioField">Comentario: </label><textarea rows="5" cols="60" id ="comentarioField"  name ="comentario" form="formAltaComentario"></textarea></div>');
-                            echo('<div id="botonera">');
-                                echo('<div class="botonesFormulario"><input class="boton" type="submit" name="button" id="buttonEnviar" value="Enviar"/></div>');
-                                echo('<div class="botonesFormulario"><input class="boton" type="reset" name="reestablecer" id="buttonReestablecer" value="Reset"/></div>');
+                            echo('<div class="camposFormulario">');
+                            echo('<label id="tituloFormComentario" class="lblFormulario" for="comentarioField">Añadir comentario</label>
+                                    <textarea  rows="5" cols="50" id ="comentarioField"name="comentario" form="formAltaComentario"></textarea>');
+                                echo('<div id="botonera">');
+                                    echo('<div class="botonesFormulario"><input class="boton" type="submit" name="button" id="buttonEnviar" value="Enviar"/></div>');
+                                    echo('<div class="botonesFormulario"><input class="boton" type="reset" name="reestablecer" id="buttonReestablecer" value="Reset"/></div>');
+                                echo('</div>');
                             echo('</div>');
                         echo('</form>');
-
-                        echo('<div id="contenedorResultado"><span id="resultadoCarga">Jejeje</span></div>');
                     echo('</div>');
                 }
                 ?>

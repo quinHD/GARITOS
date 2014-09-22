@@ -13,7 +13,8 @@
 
 
             $categoria = 0;
-            $validacion = validarCredencial($_SESSION["id_tipo_usuario"], $categoria);
+            //$validacion = validarCredencial($_SESSION["id_tipo_usuario"], $categoria);
+            $validacion = isset($_SESSION["id_tipo_usuario"]);
 
             ChromePhp::log($_SESSION);
             if($validacion)

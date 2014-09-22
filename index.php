@@ -41,7 +41,7 @@
                             <?php
                                 //Conectamos al SGDB                       
                                 $nRead = new NoticiaRead();
-                                $arrayNoticias = $nRead->selectNoticias(5,1);
+                                $arrayNoticias = $nRead->selectNoticias(5,1,0); //5-> Límite, 1->Orden Desc
 
                                 for ($i = 0; $i < 5; $i++) 
                                 {
@@ -52,9 +52,11 @@
                                        $idnoticia = $noticia['id_noticia'];
                                        $titularNoticia = $noticia['titular_noticia'];
                                        $textoNoticia = $noticia['texto_noticia'];
-                                       $idCategoriaNoticia = $noticia['categoria_noticia'];
+                                       $idCategoriaNoticia = $noticia['id_categoria_noticia'];
+                                       $categoriaNoticia = $noticia['categoria_noticia'];
                                        $idUsuario = $noticia['usuario'];
                                        $fechaCreacion = $noticia['fecha_creacion'];
+                                       $numComentarios = $noticia['num_comentarios'];
                                     }
 
                                     if($i==0)
@@ -67,7 +69,7 @@
                                             echo('<div class="ultimasNoticias">');
                                     }
 
-                                        echo('<h3 class="entradaNoticiaTitulo"><a href="noticias.php#noticia'.$idnoticia.'">'.$titularNoticia.'</a></h3>');
+                                        echo('<h3 class="entradaNoticiaTitulo"><a href="verNoticia.php?t='.$idnoticia.'">'.$titularNoticia.'</a></h3>');
                                         echo('<span class="subtituloEntradaNoticia">');
                                             echo('<img alt="icono fecha" src="img/icono_fecha.gif"/ title="Fecha de Publicación"/>');
                                             echo('<span>'.date("d", $fechaCreacion).'-'.substr(date("F", $fechaCreacion),0,3).'-'.date("Y", $fechaCreacion).'</span>');
@@ -76,7 +78,13 @@
                                             echo('<span>'.$idUsuario.'</span>');
 
                                             echo('<img alt="icono categoría"src="img/icono_categoria.gif"/ title="Categoría"/>');
-                                            echo('<span>'.$idCategoriaNoticia.'</span>');
+                                            /*if($idCategoriaNoticia >0)
+                                                echo('<span><a href="noticias.php">'.$categoriaNoticia.'</span>');
+                                            else*/
+                                                echo('<span><a href="noticias.php?categoria='.$idCategoriaNoticia.'">'.$categoriaNoticia.'</a></span>');
+
+                                            echo('<img alt="icono categoría"src="img/icono_categoria.gif"/ title="Categoría"/>');
+                                            echo('<span><a href="verNoticia.php?t='.$idnoticia.'#comments">'.$numComentarios.'</a></span>');
                                         echo('</span>');
                                     echo('</div>');
                                 }

@@ -21,7 +21,7 @@
 			$usuario = $_POST['usuario'];	
 			$password = $_POST['password'];
 			ChromePhp::log($_POST);
-			$tipoUsuario = 2; //Por defecto se crean con 2 porque es el número que corresponde con "usuario registrado"
+			$tipoUsuario = 1; //Por defecto se crean con 2 porque es el número que corresponde con "usuario registrado"
 
 
 

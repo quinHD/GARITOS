@@ -134,12 +134,7 @@ body{
 	/*visibility: hidden;*/
 }
 
-#botonera{
-	margin: 0 auto;
-	width: 30%;
-	
-	overflow: hidden;
-}
+
 #contenedorResultado{
 	margin: 1.1em auto;
 	width: 60%;
@@ -148,30 +143,93 @@ body{
 	text-align: center;
 }
 
+.filtrarCategoria a:link{
+	
+	margin-left: 10px;
+	text-decoration: none;
+	padding: 10px 20px;
+	background: #0071BD;
+	box-shadow: 2px -2px #D4DFFA;
+	color:#ddd;
+}
+.filtrarCategoria a:visited{
+	color:#ddd;
+}
+
+.filtrarCategoria a:hover{
+	position: relative;
+	text-decoration: none;
+	box-shadow: 0px 0px #000;
+	background: #005187;
+	top: -2px;
+	left: 2px;
+	color:#fff;
+}
+
+#botonera{
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 10px;
+	width: 30%;
+	padding: 10px 5px 10px 5px;
+	overflow: hidden;
+}
+
 .boton{
+		margin-left: 10px;
+	text-decoration: none;
+	background: #0071BD;
+	box-shadow: 2px -2px #D4DFFA;
+	color:#ddd;
+
 	float: left;
 	border: none;
-	padding: 7px 15px 8px 15px;
 	cursor:pointer;
-	opacity: 0.9;
-	font-family: "console";
 	margin: 0 auto;
-	vertical-align: ;
+	height: 3em;
+	width: 7em;
 }
 
 .boton:hover{
-	opacity: 1;
+	position: relative;
+	text-decoration: none;
+	box-shadow: 0px 0px #000;
+	background: #005187;
+	top: -2px;
+	left: 2px;
+	color:#fff;
 }
 
 #buttonEnviar{
-	height: 4em;
-	width: 10em;
+	
 	float: left;
 }
 
 #buttonReestablecer{
-	margin: 2% auto;
 	float: right;
+}
+
+.camposFormulario{
+	margin: 15px 3.8em 15px 6em;
+	background: #b9c9fe;
+	border-radius: 13px 13px 0px 0px;
+	box-shadow: 5px 5px 5px #999;
+}
+
+.camposFormulario #comentarioField{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+
+
+}
+
+#tituloFormComentario{
+	display: block;
+	padding: 8px 10px;
+	margin-bottom: 15px;
+	background: #0071BD;
+	border-radius: 13px 13px 0px 0px;
 }
 
 .botonImagen::-webkit-file-upload-button{

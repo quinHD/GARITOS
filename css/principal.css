@@ -7,6 +7,10 @@
             #E5BE5F*/
         }
 
+        textarea{
+            resize:none;
+        }
+
         #contenedor{
             width: 960px;
             margin: 0px auto 0 auto;
@@ -304,68 +308,7 @@
         }
 
 
-/*ESTILOS PROPIOS DE LA PÁGINA DE NOTICIAS*/
-        .articulo{
-            margin-top: 40px;
-            margin-bottom: 30px;
-        }
 
-
-        .tituloArticulo{
-            font-size: x-large;
-            margin:0px;
-            height: 75px;
-            font-weight: normal;
-            padding-top: 5px;
-            padding-right: 10px;
-            font-size: 3em;
-            background-color: #b9c9fe;
-
-        }
-
-        .contenidoArticulo{
-            padding: 15px 10px 10px 15px;
-            color: black;
-            font-family: Arial;
-            font-size: .9em;
-            line-height: 1.4em;
-            margin: 0px 10px 10px 87px;
-            background-color: #e8edff;
-            text-align: justify;
-        }
-
-
-        .comentariosArticulo{
-            margin-left: 100px;
-            color: #0071BD;
-        }
-
-        .autorArticulo{
-            margin-left: 100px;
-            color: #0071BD;
-        }
-
-        .fecha{
-            float: left;
-            font-family: Georgia, serif;
-            font-size: small;
-            text-align: center;
-            
-            border-radius: 10px;
-            color: #FFF;
-            background-color: #0071BD;
-            width: 35px;
-            font-weight:normal;
-            padding: 4px 10px;
-            margin: 5px 10px 0px 20px;
-
-
-        }
-
-        .dia{
-            line-height: 1.2em;
-            font-size: x-large;
-        }
 
 /*ESTILOS PROPIOS DE LA PARTE DE COMERCIOS*/
 

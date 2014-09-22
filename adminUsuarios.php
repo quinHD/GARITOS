@@ -52,7 +52,11 @@
                                 echo('<td><span>'.$usuario.'</span></td>');
                                 echo('<td><span>'.$tipo_usuario.'</span></td>');
                                 echo('<td><span><a href="editarUsuario.php?t='.$id.'">Editar</a></span></td>');
-                                echo('<td><span><input type="checkbox"  form="formBajaUsuario" name="usuarioSeleccionado[]" value="'.$id.'"></span></td>');
+                                if($id != $_SESSION["id_usuario"])
+                                    echo('<td><span><input type="checkbox" form="formBajaUsuario" name="usuarioSeleccionado[]" value="'.$id.'"></span></td>');
+                                else
+                                    echo('<td><span><input type="checkbox" disabled="true" title="No se puede eliminar a uno mismo"></span></td>');
+
                             echo('</tr>');
                         }
                         echo('<br/>');

@@ -3,32 +3,36 @@ ERRORES Y CORRECCIONES
 
 URGENTE
 
-- Que el admin pueda generar nuevos admin en el panel de administración
-- Que el admin dé y revoque permisos de los usuarios
+- verUsuario
+- que en noticias.php solo se muestre una parte y luego salta el leer más
+- Horario mejor gestionado
+- Añadir opcion email del usuario
 - Nueva sección. Vuestras fotos, fotos de los usuarios en los garitos
-- Añadir noticia automáticamente cuando se cree un garito. Que se notifique solo
-- Añadir administración de "categoría de noticias".
 - Gestionar correctamente los session_start()
-- Posibilidad de eliminar noticias por el admin y por el usuario que la ha creado
 - AÑADIR ESTILO AL PANEL DE LOGIN
 - corregir el mensaje al añadir una noticia, pone jejeje y no vale.
 - corregir la fecha mostrada en creado en la administración
 - CAMBIAR LOS TITLE DE TODOS LOS SITIOS
 - QUITAR SERVER_START
 - CAMBIAR EL NOMBRE DE LOS FORMULARIOS
-- SACAR EL DIRECTORIO NEWS DE HREF DE NOTICIAS
 - CAMBIAR LA FUENTE DE LOS TITULARES
 - CENTRALIZAR FUNCIONES AJAX Y CABECERAS
 - SISTEMA DE VALIDACIÓN DE AL PINCHAR SOBRE UNA NOTICIA
 - MOVER SQL AL COMIENZO, QUE NO ESTÉ GRABADO A FUEGO
 - CAMBIAR LAS CATEGORIAS DE LAS PÁGINAS, NO PUEDEN ESTAR GRABADAS A FUEGO
-- AÑADIR VENTANAS MODALES EN EL BORRADO DE USUARIOS Y COSAS
+- AÑADIR VENTANAS QUE PREGUNTEN AL USUARIO MODALES EN EL BORRADO DE USUARIOS Y COSAS
 - SACAR $raizImagenes = "imgs/"; EN ESTABLECIMIENTODAO
 - AL AÑADIR LA NOTICIA QUE SE PUEDA AÑADIR IMAGEN, Y ENTONCES SALDRÁ UNA MINIATURA EN LA PAGINA NOTICIAS Y A TAMAÑO NARTURAL EN LA PÁGINA DE LA NOTICIA
 
 
  HECHO!!!!
  =========
+- Posibilidad de eliminar noticias por el admin y por el usuario que la ha creado
+- Refresco automático de comentarios
+- Que el admin dé y revoque permisos de los usuarios
 - Restringir la publicación de comentarios a usuarios anónimos
 - Bajas y modificaciones en el panel de administracion
 - Que se copie un nuevo noticias* cada vez que se da de alta una noticia
+- Que el admin pueda generar nuevos admin en el panel de administración
+- Añadir noticia automáticamente cuando se cree un garito. Que se notifique solo
+- Añadir administración de "categoría de noticias".

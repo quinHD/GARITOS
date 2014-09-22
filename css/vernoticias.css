@@ -1,0 +1,235 @@
+
+/*ESTILOS PROPIOS DE LA PÁGINA DE NOTICIAS*/
+        .articulo{
+            margin-top: 40px;
+            margin-bottom: 100px;
+        }
+
+
+        .tituloArticulo{
+            font-size: x-large;
+            margin:0px;
+            height: 75px;
+            font-weight: normal;
+        
+            display: flex;
+			align-items:center;
+			font-size: 40px;
+			vertical-align: middle;
+			padding:0;
+
+        }
+
+        .contenidoArticulo{
+            padding: 15px 10px 10px 15px;
+            color: black;
+            font-family: Arial;
+            font-size: .9em;
+            line-height: 1.4em;
+            margin: 0px 60px 0px 95px;
+            /*background-color: #e8edff;*/
+            border-right: 2px solid #e8edff;
+            border-left: 2px solid #e8edff;
+            text-align: justify;
+        }
+
+        .pintarBordesInf{
+        	margin-left: 95px;
+        	border-bottom: 2px solid #e8edff;
+			width: 50px;
+			position: absolute;
+		}
+
+        .pintarBordesSup{
+            margin-left: 650px;
+            border-bottom: 2px solid #e8edff;
+            width: 250px;
+            position: absolute;
+        }
+
+
+
+        .autorArticulo{
+            margin-left: 100px;
+            color: #0071BD;
+        }
+
+        .fecha{
+            float: left;
+            font-family: Georgia, serif;
+            font-size: small;
+            text-align: center;
+    		background-color: #b9c9fe;
+            
+            border-radius: 10px;
+            color: #FFF;
+            width: 35px;
+            font-weight:normal;
+            padding: 4px 10px;
+            margin: 5px 10px 0px 20px;
+
+
+        }
+
+        .dia{
+            line-height: 1.2em;
+            font-size: x-large;
+        }
+
+.cabeceraArticulo{
+    background-color: #0071BD;
+    background-color: #80B8DE;
+}
+
+
+
+.articulo{
+	padding-top: 10px;
+
+}
+
+.articulo a{
+	text-decoration: none;
+
+}
+
+.articulo a:link{
+	color: #0071BD;
+}
+.articulo a:visited{
+	color: white;
+}
+.articulo a:hover{
+
+}
+.articulo a:active{
+
+}
+
+.cuerpoArticulo{
+	padding-bottom: 0;
+	margin-bottom: 0;
+}
+
+.contInfoArticulo{
+	float: right;
+	margin-right: 10px;
+	padding-right: 10px;
+	padding-left: 15px;
+	background-color: #0071BD;
+	    background-color: #b9c9fe;
+
+}
+
+.separador{
+	padding: 0 10px;
+	color: white;
+}
+
+/*COMENTARIOS*/
+
+/*
+.textoComentario{
+    padding: 10px;
+    width: 220px;
+    border-radius: 10px;
+    font-size: 1.4em;
+    background-color: #444;
+}
+
+.textoComentario:before{
+    content:"";
+    position: absolute;
+    width:0;
+    height: 0;
+    border-top: 20px solid transparent;
+    border-right:30px solid #ff8800;
+    border-bottom: 20px solid transparent;
+    margin: -30px 0 0 5px;
+}*/
+
+.autorComentario{
+    border: solid 2px #b9c9fe;
+    margin-left: 6em;
+    margin-bottom: 40px;
+    padding: 3px 5px;
+    background-color: #b9c9fe;
+}
+
+.contComentario{
+    position: relative;
+    padding: 0px;
+    border:2px solid #b9c9fe;
+    color:#333;
+    background: #fff;
+    border-radius: 10px;
+
+    display: block;
+    -webkit-margin-before:1.5em;
+    -webkit-margin-after:4em;
+    -webkit-margin-start:6em;
+    -webkit-margin-end:3.8em;
+}
+
+.contComentario:before{
+    content:"";
+    position: absolute;
+    top:-20px;
+    bottom:auto;
+    left:40px;
+    right:40px;
+    border-width: 0 20px 20px;
+    border-style: solid;
+    border-color: #b9c9fe transparent;
+    display: block;
+    width: 0;
+}
+
+.contComentario:after{
+    content:"";
+    position: absolute;
+    bottom:auto;
+    top:-17px;
+    left:42px;
+    right:47px;
+    border-width: 0 18px 18px;
+    border-style: solid;
+    border-color: #fff transparent;
+    display: block;
+    width: 0;
+}
+
+.textoComentario{
+    margin: 15px;
+
+}
+
+.horaComentario{
+    background-color: #b9c9fe;
+    padding: 0px 15px;
+    border-radius: 0px 5px 0px 5px;
+    color:white;
+}
+
+.eliminarComentario{
+    float: right;
+    padding: 0px 15px;
+    margin: 0;
+    background-color: #b9c9fe;
+    border-radius: 5px 0px 5px 0px;
+}
+
+.eliminarComentario a{
+    text-decoration: none;
+    color:#fff;
+}
+
+.eliminarComentario a:visited{
+    text-decoration: none;
+    color:#fff;
+}
+
+.eliminarComentario a:hover{
+    text-decoration: none;
+    color:#888; 
+}

@@ -56,7 +56,6 @@
 				//Una vez insertada la noticia creamos un fichero noticia que sigue el patrón de noticiaX donde se mostrará
 
 				$noticiaInsertada = mysqli_insert_id($iden);
-				copy("_noticiaX.php", "noticia".$noticiaInsertada.".php");
 			}
 			else{
 				$mensajeLog = "0#Ha habido un fallo en la creación de la noticia";
