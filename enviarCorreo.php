@@ -5,7 +5,7 @@
 		$respuesta = "";
 
 		
-		$destinatario = "vavoom02@gmail.com";
+		$destinatario = "insertmail";
 		
 		$mensaje = $_POST["mensaje"];
 		$asunto = "Mensaje del usuario: ".$_POST["usuario"];
